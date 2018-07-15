@@ -99,7 +99,6 @@ public class Main extends Application
      */
     private void drawGrid(GraphicsContext gc)
     {
-
         /* Quick test with using x and y coordinates relative to the canvas itself */
         // Horizontal lines - 20 = Padding
         for (double i = 0; i <= canvasHeight; i += canvasHeight / numRows)
@@ -112,20 +111,6 @@ public class Main extends Application
         {
             gc.strokeLine(i, 0, i, canvasHeight);
         }
-
-        /*
-        // Horizontal lines - 20 = Padding
-        for (double i = 20; i <= 20 + canvasHeight; i += canvasHeight / numRows)
-        {
-            gc.strokeLine(20, i, 20 + canvasWidth, i);
-        }
-
-        // Vertical lines - 20 = Padding
-        for (double i = 20; i <= 20 + canvasWidth; i += canvasWidth / numColumns)
-        {
-            gc.strokeLine(i, 20, i, 20 + canvasHeight);
-        }
-        */
     }
 
     /* Validates User Input and stores it in global variables */
