@@ -23,11 +23,11 @@ public class Main extends Application
 
     private int numRows = 0, numColumns = 0;
 
-    private TextField widthField = new TextField(), heightField = new TextField();
-    private Button generateButton = new Button ("Generate Arena w/ Specified Parameters");
+    private TextField widthField = new TextField(), heightField = new TextField(); // These values are used in several methods
+    private Button generateButton = new Button ("Generate Arena w/ Specified Parameters"); // Todo - Make this a local variable (pass it into functions and stuff)
 
     @Override
-    public void start(Stage primaryStage) throws Exception
+    public void start(Stage primaryStage)
     {
         primaryStage.setTitle("Arena Design"); // Title of the window
         BorderPane borderPane = new BorderPane(); // The master container-type-thing
@@ -35,7 +35,7 @@ public class Main extends Application
         // Making the input system (a GridPane)
         GridPane grid = makeGridPane(); // Makes a GridPane then stores it in the grid object (it's needed to draw all the shapes)
 
-        // Drawing the grid matrix itself
+        // Holds the grid matrix of lines itself
         Canvas canvas = new Canvas(canvasWidth, canvasHeight);
 
         // Button action event
@@ -46,12 +46,12 @@ public class Main extends Application
             {
                 // Todo - Clear the canvas here
                 parseUserInput(widthField, heightField);
-                drawShapes(canvas.getGraphicsContext2D(), grid);
+                drawGrid(canvas.getGraphicsContext2D());
             }
         });
 
         // Setting Alignments
-        borderPane.setCenter(canvas);
+        borderPane.setTop(canvas);
         borderPane.setBottom(grid);
 
         primaryStage.setScene(new Scene(borderPane)); // Makes a scene out of the borderPane element
@@ -85,7 +85,7 @@ public class Main extends Application
         final Text buttonNotification = new Text();
         grid.add(buttonNotification, 1, 4);
 
-        HBox hbGenerateButton = new HBox(10); // Dictates button alignment
+        HBox hbGenerateButton = new HBox(10); // Makes the button span both columns in the specified row
         hbGenerateButton.setAlignment(Pos.BOTTOM_CENTER);
         hbGenerateButton.getChildren().add(generateButton);
         grid.add(hbGenerateButton, 1, 2);
@@ -93,22 +93,43 @@ public class Main extends Application
         return grid;
     }
 
-    private void drawShapes(GraphicsContext gc, GridPane grid)
+    /* The only big unexpected behavior I ran into here was that the measurements were screwed up. What I didn't
+        understand was that the pixel amounts were relative to the canvas that the GraphicsContext was
+        in context to. Not the best explanation but it pretty much fixed my issue.
+     */
+    private void drawGrid(GraphicsContext gc)
     {
-        // Todo - Make this get rid of the old lines before it draws the new ones
+
+        /* Quick test with using x and y coordinates relative to the canvas itself */
         // Horizontal lines - 20 = Padding
-        for (double i = 20; i <= 20 + canvasWidth + 1; i += canvasWidth / numColumns)
+        for (double i = 0; i <= canvasHeight; i += canvasHeight / numRows)
+        {
+            gc.strokeLine(0, i, canvasWidth, i);
+        }
+
+        // Vertical lines - 20 = Padding
+        for (double i = 0; i <= canvasWidth; i += canvasWidth / numColumns)
+        {
+            gc.strokeLine(i, 0, i, canvasHeight);
+        }
+
+        /*
+        // Horizontal lines - 20 = Padding
+        for (double i = 20; i <= 20 + canvasHeight; i += canvasHeight / numRows)
         {
             gc.strokeLine(20, i, 20 + canvasWidth, i);
         }
 
         // Vertical lines - 20 = Padding
-        for (double i = 20; i <= 20 + canvasHeight + 1; i += canvasHeight / numRows)
+        for (double i = 20; i <= 20 + canvasWidth; i += canvasWidth / numColumns)
         {
             gc.strokeLine(i, 20, i, 20 + canvasHeight);
         }
+        */
     }
 
+    /* Validates User Input and stores it in global variables */
+    // Todo - Figure out if it's possible to make this w/ more local variables
     private void parseUserInput(TextField widthField, TextField heightField)
     {
         // Getting the number of rows
