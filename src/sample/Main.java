@@ -23,7 +23,7 @@ import java.awt.*;
 public class Main extends Application
 {
     // A few global variables - Todo - MAKE MORE OF THESE LOCAL, ESPECIALLY ONES NOT WIDELY USED
-    private int canvasWidth = 800, canvasHeight = 800;
+    private int canvasWidth = 600, canvasHeight = 600;
 
     private int numRows = 0, numColumns = 0;
 
@@ -35,6 +35,7 @@ public class Main extends Application
 
     // Holds the grid matrix of lines itself
     private Canvas canvas = new Canvas(canvasWidth, canvasHeight);
+    Text buttonNotification = new Text();
 
     @Override
     public void start(Stage primaryStage)
@@ -60,9 +61,6 @@ public class Main extends Application
             }
         });
 
-        /* I know some of these seem complicated, but I'm basically converting in between the default Line class and
-            the JavaFX version (GraphicsContext). Incredibly hacky, and there's probably a better way to do it, but
-            I don't see why this shouldn't work.  */
         // Todo - Make this work
         // Todo - Make it lock onto the nearest intersection on the grid
         canvas.setOnMousePressed(new EventHandler<MouseEvent>()
@@ -100,7 +98,7 @@ public class Main extends Application
             }
         });
 
-        // Setting Alignments
+        // Setting Alignments / Adding them to the BorderPane
         borderPane.setCenter(canvas);
         borderPane.setBottom(grid);
 
@@ -132,7 +130,7 @@ public class Main extends Application
         grid.add(heightField, 1, 1, 1, 1);
 
         // This pops up to notify the user that it is generating the grid
-        final Text buttonNotification = new Text();
+        buttonNotification = new Text();
         grid.add(buttonNotification, 1, 4);
 
         HBox hbGenerateButton = new HBox(10); // Makes the button span both columns in the specified row
@@ -144,6 +142,7 @@ public class Main extends Application
     }
 
     // Todo - Make this mathematically sound (it's inaccurate at high values, so something's off
+    // I legitimately have no clue what's wrong with this
     private void drawGrid(GraphicsContext gc)
     {
         /* Quick test with using x and y coordinates relative to the canvas itself */
@@ -190,7 +189,43 @@ public class Main extends Application
     // Draws a line on the canvas with the passed-in coordinates. Works as expected.
     private void drawPermanentLine(double x1, double y1, double x2, double y2, GraphicsContext gc)
     {
-        gc.strokeLine(x1, y1, x2, y2);
+        // Distance formula
+        double distance = Math.sqrt(Math.abs(Math.pow(Math.abs(x1 - x2), 2) + Math.pow(Math.abs(y1 - y2), 2)));
+        buttonNotification.setText(""); // Resetting this so the error message for the line being too long doesn't stay up for too long
+
+        /* These two if statements check that it isn't too long to be a legitimate barrier (the longest of which
+            can be the square root of 8. The 25 is just a little bit of leeway.     */
+
+        // Wider than it is tall
+        if (Math.abs(x1 - x2) > Math.abs(y1 - y2))
+        {
+            // Todo - Change the 25 to something that scales with number of columns (as a pixel amount doesn't work well with really small tiles)
+            if (distance < Math.sqrt(8) * canvasWidth / numColumns + 25)
+            {
+                gc.strokeLine(x1, y1, x2, y2);
+            }
+
+            // If the line is too long
+            else
+            {
+                buttonNotification.setText("Segment is too long! Please try again.");
+            }
+        }
+
+        // Taller than it is wide
+        else
+        {
+            if (distance < Math.sqrt(8) * canvasHeight / numColumns + 25)
+            {
+                gc.strokeLine(x1, y1, x2, y2);
+            }
+
+            // If the line is too long
+            else
+            {
+                buttonNotification.setText("Segment is too long! Please try again.");
+            }
+        }
     }
 
     // Kinda hacky, but it works by putting a white rectangle over the entire canvas.
