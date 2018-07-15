@@ -10,11 +10,15 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.awt.*;
 
 public class Main extends Application
 {
@@ -26,9 +30,14 @@ public class Main extends Application
     private TextField widthField = new TextField(), heightField = new TextField(); // These values are used in several methods
     private Button generateButton = new Button ("Generate Arena w/ Specified Parameters"); // Todo - Make this a local variable (pass it into functions and stuff)
 
+    private Point mouseLocation; // Updated whenever the program needs the cursor position
+    private Line currentLine; // Used for the line that the user is currently drawing
+    private double originalXPos = 0, originalYPos = 0;
+
     @Override
     public void start(Stage primaryStage)
     {
+
         primaryStage.setTitle("Arena Design"); // Title of the window
         BorderPane borderPane = new BorderPane(); // The master container-type-thing
 
@@ -47,6 +56,35 @@ public class Main extends Application
                 // Todo - Clear the canvas here
                 parseUserInput(widthField, heightField);
                 drawGrid(canvas.getGraphicsContext2D());
+            }
+        });
+
+        canvas.setOnMousePressed(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                originalXPos = mouseLocation.x;
+                originalYPos = mouseLocation.y;
+
+                mouseLocation = java.awt.MouseInfo.getPointerInfo().getLocation();
+                currentLine = new Line(mouseLocation.x, mouseLocation.y, mouseLocation.x, mouseLocation.y);
+            }
+        });
+
+        canvas.setOnMouseDragged(new EventHandler<MouseEvent>()
+        {
+            public void handle(MouseEvent e)
+            {
+                currentLine = new Line(originalXPos, originalYPos, mouseLocation.x, mouseLocation.y);
+            }
+        });
+
+        canvas.setOnMouseReleased(new EventHandler<MouseEvent>()
+        {
+            public void handle(MouseEvent e)
+            {
+                drawPermanentLine(originalXPos, originalYPos, mouseLocation.x, mouseLocation.y, canvas.getGraphicsContext2D());
             }
         });
 
@@ -138,6 +176,12 @@ public class Main extends Application
         {
             System.out.println("There was an error getting the number of columns.");
         }
+    }
+
+    // Draws a line on the canvas with the passed-in coordinates
+    private void drawPermanentLine(double x1, double y1, double x2, double y2, GraphicsContext gc)
+    {
+        gc.strokeLine(x1, y1, x2, y2);
     }
 
     public static void main(String[] args)

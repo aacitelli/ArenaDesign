@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -63,12 +64,15 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="100" column="5" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
+            <state relative-caret-position="306">
+              <caret line="78" column="101" selection-start-line="78" selection-start-column="101" selection-end-line="78" selection-end-column="101" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5138#5139#0" expanded="true" />
-                <element signature="e#5166#5167#0" expanded="true" />
+                <element signature="method#makeGridPane#0;class#Main#0" />
+                <element signature="method#drawGrid#0;class#Main#0" />
+                <element signature="method#parseUserInput#0;class#Main#0" />
+                <element signature="e#5449#5450#0" expanded="true" />
+                <element signature="e#5477#5478#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -327,8 +331,11 @@
           <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5138#5139#0" expanded="true" />
-            <element signature="e#5166#5167#0" expanded="true" />
+            <element signature="method#makeGridPane#0;class#Main#0" />
+            <element signature="method#drawGrid#0;class#Main#0" />
+            <element signature="method#parseUserInput#0;class#Main#0" />
+            <element signature="e#5449#5450#0" expanded="true" />
+            <element signature="e#5477#5478#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -357,8 +364,11 @@
           <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5138#5139#0" expanded="true" />
-            <element signature="e#5166#5167#0" expanded="true" />
+            <element signature="method#makeGridPane#0;class#Main#0" />
+            <element signature="method#drawGrid#0;class#Main#0" />
+            <element signature="method#parseUserInput#0;class#Main#0" />
+            <element signature="e#5449#5450#0" expanded="true" />
+            <element signature="e#5477#5478#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -387,8 +397,11 @@
           <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5138#5139#0" expanded="true" />
-            <element signature="e#5166#5167#0" expanded="true" />
+            <element signature="method#makeGridPane#0;class#Main#0" />
+            <element signature="method#drawGrid#0;class#Main#0" />
+            <element signature="method#parseUserInput#0;class#Main#0" />
+            <element signature="e#5449#5450#0" expanded="true" />
+            <element signature="e#5477#5478#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -417,8 +430,11 @@
           <caret line="8" selection-start-line="8" selection-end-line="8" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5138#5139#0" expanded="true" />
-            <element signature="e#5166#5167#0" expanded="true" />
+            <element signature="method#makeGridPane#0;class#Main#0" />
+            <element signature="method#drawGrid#0;class#Main#0" />
+            <element signature="method#parseUserInput#0;class#Main#0" />
+            <element signature="e#5449#5450#0" expanded="true" />
+            <element signature="e#5477#5478#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -458,12 +474,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="100" column="5" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
+        <state relative-caret-position="306">
+          <caret line="78" column="101" selection-start-line="78" selection-start-column="101" selection-end-line="78" selection-end-column="101" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5138#5139#0" expanded="true" />
-            <element signature="e#5166#5167#0" expanded="true" />
+            <element signature="method#makeGridPane#0;class#Main#0" />
+            <element signature="method#drawGrid#0;class#Main#0" />
+            <element signature="method#parseUserInput#0;class#Main#0" />
+            <element signature="e#5449#5450#0" expanded="true" />
+            <element signature="e#5477#5478#0" expanded="true" />
           </folding>
         </state>
       </provider>
