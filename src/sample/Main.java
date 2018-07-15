@@ -20,7 +20,11 @@ public class Main extends Application
 {
     // A few global variables - Todo - Make more of these local and pass more between methods, that is a little more CPU intensive but looks generally better than just having a bunch of global variables
     private GraphicsContext gc;
-    private int screenWidth = 1000, screenHeight = 1000, numRows = 0, numColumns = 0;
+
+    private int screenWidth = 500, screenHeight = 500;
+
+    private int numRows = 0, numColumns = 0;
+
     private TextField widthField = new TextField(), heightField = new TextField();
     private Button generateButton = new Button ("Generate Arena w/ Specified Parameters");
 
@@ -34,7 +38,7 @@ public class Main extends Application
         GridPane grid = makeGridPane(); // Makes a GridPane then stores it in the grid object (it's needed to draw all the shapes)
 
         // Drawing the grid matrix itself
-        Canvas canvas = new Canvas(screenWidth - 40, screenHeight - grid.getHeight() - 200);
+        Canvas canvas = new Canvas(screenWidth - 40, screenHeight - grid.getHeight() - 40);
 
         // Button action event
         generateButton.setOnAction(new EventHandler<ActionEvent>()
@@ -117,15 +121,19 @@ public class Main extends Application
 
     private void drawShapes(GraphicsContext gc, GridPane grid)
     {
+        // Here for clarity, I know it's slightly inefficient but it really helps w/ readability
+        double gridHeight = screenHeight - grid.getHeight() - 40; // Full screen height, minus the 20px of padding on each side, minus the height of the grid
+        double gridWidth = screenWidth - 40; // Full screen width, minus the 20px of padding on each side
+
         // Todo - Make this get rid of the old lines before it draws the new ones
         // Horizontal lines - The 20 is padding
-        for (double i = 20; i < screenHeight - grid.getHeight() - 20; i += (screenHeight - grid.getHeight() - 20) / numColumns)
+        for (double i = 20; i <= gridHeight - 20; i += gridHeight / numColumns)
         {
             gc.strokeLine(20, i, screenWidth - 20, i);
         }
 
         // Vertical lines - The 20 is padding
-        for (double i = 20; i < screenWidth - 20; i += (screenWidth - 20) / numRows)
+        for (double i = 20; i <= gridWidth - 20; i += gridWidth / numRows)
         {
             gc.strokeLine(i, 20, i, screenHeight - grid.getHeight() - 20);
         }
