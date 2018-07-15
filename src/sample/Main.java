@@ -19,9 +19,7 @@ import javafx.stage.Stage;
 public class Main extends Application
 {
     // A few global variables - Todo - Make more of these local and pass more between methods, that is a little more CPU intensive but looks generally better than just having a bunch of global variables
-    private GraphicsContext gc;
-
-    private int screenWidth = 500, screenHeight = 500;
+    private int canvasWidth = 800, canvasHeight = 800;
 
     private int numRows = 0, numColumns = 0;
 
@@ -38,7 +36,7 @@ public class Main extends Application
         GridPane grid = makeGridPane(); // Makes a GridPane then stores it in the grid object (it's needed to draw all the shapes)
 
         // Drawing the grid matrix itself
-        Canvas canvas = new Canvas(screenWidth - 40, screenHeight - grid.getHeight() - 40);
+        Canvas canvas = new Canvas(canvasWidth, canvasHeight);
 
         // Button action event
         generateButton.setOnAction(new EventHandler<ActionEvent>()
@@ -46,6 +44,7 @@ public class Main extends Application
             @Override
             public void handle(ActionEvent e)
             {
+                // Todo - Clear the canvas here
                 parseUserInput(widthField, heightField);
                 drawShapes(canvas.getGraphicsContext2D(), grid);
             }
@@ -55,7 +54,7 @@ public class Main extends Application
         borderPane.setCenter(canvas);
         borderPane.setBottom(grid);
 
-        primaryStage.setScene(new Scene(borderPane)); // Makes a scene out of the root element
+        primaryStage.setScene(new Scene(borderPane)); // Makes a scene out of the borderPane element
         primaryStage.show(); //  Presents everything that's loaded to the user
     }
 
@@ -66,7 +65,7 @@ public class Main extends Application
         grid.setAlignment(Pos.BOTTOM_CENTER);
         grid.setHgap(10); // The horizontal gap between elements
         grid.setVgap(10); // The vertical gap between elements
-        grid.setPadding(new Insets(25, 25, 25, 25)); // How much space is along the edge of the entire grid
+        grid.setPadding(new Insets(20, 20, 20, 20));
 
         // The prompt text for the width
         Text widthPrompt = new Text("Arena Width: "); // The text of the label
@@ -94,6 +93,22 @@ public class Main extends Application
         return grid;
     }
 
+    private void drawShapes(GraphicsContext gc, GridPane grid)
+    {
+        // Todo - Make this get rid of the old lines before it draws the new ones
+        // Horizontal lines - 20 = Padding
+        for (double i = 20; i <= 20 + canvasWidth + 1; i += canvasWidth / numColumns)
+        {
+            gc.strokeLine(20, i, 20 + canvasWidth, i);
+        }
+
+        // Vertical lines - 20 = Padding
+        for (double i = 20; i <= 20 + canvasHeight + 1; i += canvasHeight / numRows)
+        {
+            gc.strokeLine(i, 20, i, 20 + canvasHeight);
+        }
+    }
+
     private void parseUserInput(TextField widthField, TextField heightField)
     {
         // Getting the number of rows
@@ -116,26 +131,6 @@ public class Main extends Application
         catch (Exception e)
         {
             System.out.println("There was an error getting the number of columns.");
-        }
-    }
-
-    private void drawShapes(GraphicsContext gc, GridPane grid)
-    {
-        // Here for clarity, I know it's slightly inefficient but it really helps w/ readability
-        double gridHeight = screenHeight - grid.getHeight() - 40; // Full screen height, minus the 20px of padding on each side, minus the height of the grid
-        double gridWidth = screenWidth - 40; // Full screen width, minus the 20px of padding on each side
-
-        // Todo - Make this get rid of the old lines before it draws the new ones
-        // Horizontal lines - The 20 is padding
-        for (double i = 20; i <= gridHeight - 20; i += gridHeight / numColumns)
-        {
-            gc.strokeLine(20, i, screenWidth - 20, i);
-        }
-
-        // Vertical lines - The 20 is padding
-        for (double i = 20; i <= gridWidth - 20; i += gridWidth / numRows)
-        {
-            gc.strokeLine(i, 20, i, screenHeight - grid.getHeight() - 20);
         }
     }
 
