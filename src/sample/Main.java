@@ -30,7 +30,6 @@ public class Main extends Application
     private TextField widthField = new TextField(), heightField = new TextField(); // These values are used in several methods
     private Button generateButton = new Button ("Generate Arena w/ Specified Parameters"); // Todo - Make this a local variable (pass it into functions and stuff)
 
-    private Point mouseLocation; // Updated whenever the program needs the cursor position
     private Line currentLine; // Used for the line that the user is currently drawing
     private double originalXPos = 0, originalYPos = 0;
 
@@ -46,8 +45,6 @@ public class Main extends Application
 
         // Making the input system (a GridPane)
         GridPane grid = makeGridPane(); // Makes a GridPane then stores it in the grid object (it's needed to draw all the shapes)
-
-
 
         // Button action event
         generateButton.setOnAction(new EventHandler<ActionEvent>()
@@ -66,11 +63,10 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent e)
             {
-                originalXPos = mouseLocation.x;
-                originalYPos = mouseLocation.y;
+                originalXPos = e.getX();
+                originalYPos = e.getY();
 
-                mouseLocation = java.awt.MouseInfo.getPointerInfo().getLocation();
-                currentLine = new Line(mouseLocation.x, mouseLocation.y, mouseLocation.x, mouseLocation.y);
+                currentLine = new Line(e.getX(), e.getY(), e.getX(), e.getY());
             }
         });
 
@@ -78,7 +74,8 @@ public class Main extends Application
         {
             public void handle(MouseEvent e)
             {
-                currentLine = new Line(originalXPos, originalYPos, mouseLocation.x, mouseLocation.y);
+                currentLine.setEndX(e.getX());
+                currentLine.setEndY(e.getY());
             }
         });
 
@@ -86,12 +83,12 @@ public class Main extends Application
         {
             public void handle(MouseEvent e)
             {
-                drawPermanentLine(originalXPos, originalYPos, mouseLocation.x, mouseLocation.y, canvas.getGraphicsContext2D());
+                drawPermanentLine(originalXPos, originalYPos, e.getX(), e.getY(), canvas.getGraphicsContext2D());
             }
         });
 
         // Setting Alignments
-        borderPane.setTop(canvas);
+        borderPane.setCenter(canvas);
         borderPane.setBottom(grid);
 
         primaryStage.setScene(new Scene(borderPane)); // Makes a scene out of the borderPane element
@@ -133,10 +130,7 @@ public class Main extends Application
         return grid;
     }
 
-    /* The only big unexpected behavior I ran into here was that the measurements were screwed up. What I didn't
-        understand was that the pixel amounts were relative to the canvas that the GraphicsContext was
-        in context to. Not the best explanation but it pretty much fixed my issue.
-     */
+    // Becomes inaccurate over high row/column counts but it's a lot better than it used to be
     private void drawGrid(GraphicsContext gc)
     {
         /* Quick test with using x and y coordinates relative to the canvas itself */
