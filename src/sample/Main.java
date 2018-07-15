@@ -34,6 +34,9 @@ public class Main extends Application
     private Line currentLine; // Used for the line that the user is currently drawing
     private double originalXPos = 0, originalYPos = 0;
 
+    // Holds the grid matrix of lines itself
+    private Canvas canvas = new Canvas(canvasWidth, canvasHeight);
+
     @Override
     public void start(Stage primaryStage)
     {
@@ -44,8 +47,7 @@ public class Main extends Application
         // Making the input system (a GridPane)
         GridPane grid = makeGridPane(); // Makes a GridPane then stores it in the grid object (it's needed to draw all the shapes)
 
-        // Holds the grid matrix of lines itself
-        Canvas canvas = new Canvas(canvasWidth, canvasHeight);
+
 
         // Button action event
         generateButton.setOnAction(new EventHandler<ActionEvent>()
@@ -53,7 +55,7 @@ public class Main extends Application
             @Override
             public void handle(ActionEvent e)
             {
-                // Todo - Clear the canvas here
+                clearGrid(canvas.getGraphicsContext2D());
                 parseUserInput(widthField, heightField);
                 drawGrid(canvas.getGraphicsContext2D());
             }
@@ -182,6 +184,11 @@ public class Main extends Application
     private void drawPermanentLine(double x1, double y1, double x2, double y2, GraphicsContext gc)
     {
         gc.strokeLine(x1, y1, x2, y2);
+    }
+
+    private void clearGrid(GraphicsContext gc)
+    {
+        gc.clearRect(0, 0, canvasWidth, canvasHeight);
     }
 
     public static void main(String[] args)
