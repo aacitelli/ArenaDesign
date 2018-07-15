@@ -22,7 +22,7 @@ import java.awt.*;
 
 public class Main extends Application
 {
-    // A few global variables - Todo - Make more of these local and pass more between methods, that is a little more CPU intensive but looks generally better than just having a bunch of global variables
+    // A few global variables - Todo - MAKE MORE OF THESE LOCAL, ESPECIALLY ONES NOT WIDELY USED
     private int canvasWidth = 800, canvasHeight = 800;
 
     private int numRows = 0, numColumns = 0;
@@ -39,6 +39,8 @@ public class Main extends Application
     @Override
     public void start(Stage primaryStage)
     {
+        // Linked to the canvas, used to draw stuff
+        GraphicsContext gc = canvas.getGraphicsContext2D();
 
         primaryStage.setTitle("Arena Design"); // Title of the window
         BorderPane borderPane = new BorderPane(); // The master container-type-thing
@@ -52,12 +54,17 @@ public class Main extends Application
             @Override
             public void handle(ActionEvent e)
             {
-                clearGrid(canvas.getGraphicsContext2D());
+                clearGrid(gc);
                 parseUserInput(widthField, heightField);
-                drawGrid(canvas.getGraphicsContext2D());
+                drawGrid(gc);
             }
         });
 
+        /* I know some of these seem complicated, but I'm basically converting in between the default Line class and
+            the JavaFX version (GraphicsContext). Incredibly hacky, and there's probably a better way to do it, but
+            I don't see why this shouldn't work.  */
+        // Todo - Make this work
+        // Todo - Make it lock onto the nearest intersection on the grid
         canvas.setOnMousePressed(new EventHandler<MouseEvent>()
         {
             @Override
@@ -65,25 +72,31 @@ public class Main extends Application
             {
                 originalXPos = e.getX();
                 originalYPos = e.getY();
-
-                currentLine = new Line(e.getX(), e.getY(), e.getX(), e.getY());
             }
         });
 
+        // Todo - Implement This (It still works, but this would make this look a lot better
+        // Todo - Make it so line can't get longer than a certain length
         canvas.setOnMouseDragged(new EventHandler<MouseEvent>()
         {
             public void handle(MouseEvent e)
             {
-                currentLine.setEndX(e.getX());
-                currentLine.setEndY(e.getY());
+                /* What I want to do here:
+                    Remove the last line drawn. (Once I figure out how to do this, of course)
+                    Using GraphicsContext to draw an up-to-date line.
+                 */
+
+                // Drawing the new line
+                // gc.strokeLine(originalXPos, originalYPos, e.getX(), e.getY());
             }
         });
 
+        // Todo - Reject line if it's longer than a certain length (roughly sqrt(5) - Pythagorean theorem) units plus a very small amount
         canvas.setOnMouseReleased(new EventHandler<MouseEvent>()
         {
             public void handle(MouseEvent e)
             {
-                drawPermanentLine(originalXPos, originalYPos, e.getX(), e.getY(), canvas.getGraphicsContext2D());
+                drawPermanentLine(originalXPos, originalYPos, e.getX(), e.getY(), gc);
             }
         });
 
@@ -130,7 +143,7 @@ public class Main extends Application
         return grid;
     }
 
-    // Becomes inaccurate over high row/column counts but it's a lot better than it used to be
+    // Todo - Make this mathematically sound (it's inaccurate at high values, so something's off
     private void drawGrid(GraphicsContext gc)
     {
         /* Quick test with using x and y coordinates relative to the canvas itself */
@@ -174,12 +187,14 @@ public class Main extends Application
         }
     }
 
-    // Draws a line on the canvas with the passed-in coordinates
+    // Draws a line on the canvas with the passed-in coordinates. Works as expected.
     private void drawPermanentLine(double x1, double y1, double x2, double y2, GraphicsContext gc)
     {
         gc.strokeLine(x1, y1, x2, y2);
     }
 
+    // Kinda hacky, but it works by putting a white rectangle over the entire canvas.
+    // Todo - More garbage collection (None of the shapes get deleted AFAIK, just get a white box drawn over them
     private void clearGrid(GraphicsContext gc)
     {
         gc.clearRect(0, 0, canvasWidth, canvasHeight);
