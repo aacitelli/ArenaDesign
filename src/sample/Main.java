@@ -1,44 +1,3 @@
-/*
-
-// Getting the number of rows and columns from the user input
-        generateButton.setOnAction(new EventHandler<ActionEvent>()
-        {
-            @Override
-            public void handle(ActionEvent e)
-            {
-                // Notification text that pops up on button-press
-                buttonNotification.setText("Drawing the grid.");
-
-                // Getting number of rows
-                try
-                {
-                    numRows = Integer.parseInt(heightField.getText());
-                }
-
-                // Error is thrown (usually because the user didn't put anything in)
-                catch(Exception rowError)
-                {
-                    System.out.println("Had an issue getting the row input.");
-                    return; // Breaks out of the method - No point in going further if one is invalid
-                }
-
-                // Getting number of columns
-                try
-                {
-                    numColumns = Integer.parseInt(widthField.getText());
-                }
-
-                // Error is thrown (usually because the user didn't put anything in
-                catch(Exception columnError)
-                {
-                    System.out.println("Had an issue getting the column input.");
-                    return; // Breaks out of the method - No point in going further if one is invalid
-                }
-            }
-        });
-
- */
-
 package sample;
 
 import javafx.application.Application;
@@ -46,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -159,14 +117,15 @@ public class Main extends Application
 
     private void drawShapes(GraphicsContext gc, GridPane grid)
     {
+        // Todo - Make this get rid of the old lines before it draws the new ones
         // Horizontal lines - The 20 is padding
-        for (double i = 20; i < screenHeight - grid.getHeight() - 20; i += (screenHeight - grid.getHeight() - 20) / numColumns - 1)
+        for (double i = 20; i < screenHeight - grid.getHeight() - 20; i += (screenHeight - grid.getHeight() - 20) / numColumns)
         {
             gc.strokeLine(20, i, screenWidth - 20, i);
         }
 
         // Vertical lines - The 20 is padding
-        for (double i = 20; i < screenWidth - 20; i += (screenWidth - 20) / numRows - 1)
+        for (double i = 20; i < screenWidth - 20; i += (screenWidth - 20) / numRows)
         {
             gc.strokeLine(i, 20, i, screenHeight - grid.getHeight() - 20);
         }
