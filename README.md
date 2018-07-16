@@ -4,6 +4,10 @@
 ArenaDesign is a JavaFX program that I made mid-summer that displays a grid that users can interact with 
 (similar to a system like Paint) to design their own laser tag arena.
 
+### Current State of the Project
+
+Currently my main project, and being actively worked on every day.
+
 ### What I learned
 
 This project was a great way to learn JavaFX, which is (through cursory research) one of the more modern ways to make GUI applications
