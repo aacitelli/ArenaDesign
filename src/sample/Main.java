@@ -212,8 +212,8 @@ public class Main extends Application
         // Wider than it is tall
         if (Math.abs(x1 - x2) > Math.abs(y1 - y2))
         {
-            // Todo - Change the 25 to something that scales with number of columns (as a pixel amount doesn't work well with really small tiles)
-            if (distance < Math.sqrt(8) * canvasWidth / numColumns + 25)
+            // The 1.1f is multiplicative instead of a hardcoded pixel value so that it works fine even with more rows/columns
+            if (distance < Math.sqrt(8) * canvasWidth / numColumns * 1.1f)
             {
                 gc.strokeLine(x1, y1, x2, y2);
             }
@@ -228,7 +228,7 @@ public class Main extends Application
         // Taller than it is wide
         else
         {
-            if (distance < Math.sqrt(8) * canvasHeight / numColumns + 25)
+            if (distance < Math.sqrt(8) * canvasHeight / numColumns * 1.1f)
             {
                 gc.strokeLine(x1, y1, x2, y2);
             }
