@@ -12,8 +12,7 @@ Currently my main project, and being actively worked on every day.
 
 ##### High Priority
 
-- Make line endpoints latch onto the nearest intersection (this will make it look amazing) - Lots of work has been done with this, but I'm almost finished
-- Make it possible to delete lines (probably by right-clicking on them, that seems the most intuitive)
+- Make it possible to delete lines (probably by right-clicking on them; that seems the most intuitive)
 - Add the ability to add other structures instead of just walls (Bases, Energizers, Trussle, Pillars, and that's about it)
 
 ##### Relatively Low Priority
