@@ -63,14 +63,17 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="73" column="51" selection-start-line="73" selection-start-column="51" selection-end-line="73" selection-end-column="51" />
+            <state relative-caret-position="272">
+              <caret line="59" column="130" selection-start-line="59" selection-start-column="130" selection-end-line="59" selection-end-column="130" />
               <folding>
+                <element signature="class#2396:2657" />
+                <element signature="method#handle#0;class#2396:2657" />
+                <element signature="class#2871:3094" />
+                <element signature="method#handle#0;class#2871:3094" />
                 <element signature="e#3347#3494#0" />
                 <element signature="class#3376:3845" />
                 <element signature="method#handle#0;class#3376:3845" />
-                <element signature="method#makeGridPane#0;class#Main#0" />
-                <element signature="method#drawGrid#0;class#Main#0" />
+                <element signature="class#4096:4302" />
                 <element signature="method#parseUserInput#0;class#Main#0" />
                 <element signature="method#getClosestPointDouble#0;class#Main#0" />
               </folding>
@@ -326,11 +329,14 @@
         <state relative-caret-position="4403">
           <caret line="259" column="61" selection-start-line="259" selection-start-column="61" selection-end-line="259" selection-end-column="61" />
           <folding>
+            <element signature="class#2396:2657" />
+            <element signature="method#handle#0;class#2396:2657" />
+            <element signature="class#2871:3094" />
+            <element signature="method#handle#0;class#2871:3094" />
             <element signature="e#3347#3494#0" />
             <element signature="class#3376:3845" />
             <element signature="method#handle#0;class#3376:3845" />
-            <element signature="method#makeGridPane#0;class#Main#0" />
-            <element signature="method#drawGrid#0;class#Main#0" />
+            <element signature="class#4096:4302" />
             <element signature="method#parseUserInput#0;class#Main#0" />
             <element signature="method#getClosestPointDouble#0;class#Main#0" />
           </folding>
@@ -342,11 +348,14 @@
         <state relative-caret-position="3604">
           <caret line="212" lean-forward="true" selection-start-line="212" selection-end-line="212" />
           <folding>
+            <element signature="class#2396:2657" />
+            <element signature="method#handle#0;class#2396:2657" />
+            <element signature="class#2871:3094" />
+            <element signature="method#handle#0;class#2871:3094" />
             <element signature="e#3347#3494#0" />
             <element signature="class#3376:3845" />
             <element signature="method#handle#0;class#3376:3845" />
-            <element signature="method#makeGridPane#0;class#Main#0" />
-            <element signature="method#drawGrid#0;class#Main#0" />
+            <element signature="class#4096:4302" />
             <element signature="method#parseUserInput#0;class#Main#0" />
             <element signature="method#getClosestPointDouble#0;class#Main#0" />
           </folding>
@@ -358,11 +367,14 @@
         <state relative-caret-position="1003">
           <caret line="59" column="29" lean-forward="true" selection-start-line="59" selection-start-column="29" selection-end-line="59" selection-end-column="29" />
           <folding>
+            <element signature="class#2396:2657" />
+            <element signature="method#handle#0;class#2396:2657" />
+            <element signature="class#2871:3094" />
+            <element signature="method#handle#0;class#2871:3094" />
             <element signature="e#3347#3494#0" />
             <element signature="class#3376:3845" />
             <element signature="method#handle#0;class#3376:3845" />
-            <element signature="method#makeGridPane#0;class#Main#0" />
-            <element signature="method#drawGrid#0;class#Main#0" />
+            <element signature="class#4096:4302" />
             <element signature="method#parseUserInput#0;class#Main#0" />
             <element signature="method#getClosestPointDouble#0;class#Main#0" />
           </folding>
@@ -392,11 +404,14 @@
         <state relative-caret-position="1632">
           <caret line="96" column="13" lean-forward="true" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
           <folding>
+            <element signature="class#2396:2657" />
+            <element signature="method#handle#0;class#2396:2657" />
+            <element signature="class#2871:3094" />
+            <element signature="method#handle#0;class#2871:3094" />
             <element signature="e#3347#3494#0" />
             <element signature="class#3376:3845" />
             <element signature="method#handle#0;class#3376:3845" />
-            <element signature="method#makeGridPane#0;class#Main#0" />
-            <element signature="method#drawGrid#0;class#Main#0" />
+            <element signature="class#4096:4302" />
             <element signature="method#parseUserInput#0;class#Main#0" />
             <element signature="method#getClosestPointDouble#0;class#Main#0" />
           </folding>
@@ -426,11 +441,14 @@
         <state relative-caret-position="1598">
           <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
           <folding>
+            <element signature="class#2396:2657" />
+            <element signature="method#handle#0;class#2396:2657" />
+            <element signature="class#2871:3094" />
+            <element signature="method#handle#0;class#2871:3094" />
             <element signature="e#3347#3494#0" />
             <element signature="class#3376:3845" />
             <element signature="method#handle#0;class#3376:3845" />
-            <element signature="method#makeGridPane#0;class#Main#0" />
-            <element signature="method#drawGrid#0;class#Main#0" />
+            <element signature="class#4096:4302" />
             <element signature="method#parseUserInput#0;class#Main#0" />
             <element signature="method#getClosestPointDouble#0;class#Main#0" />
           </folding>
@@ -460,11 +478,14 @@
         <state relative-caret-position="629">
           <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
           <folding>
+            <element signature="class#2396:2657" />
+            <element signature="method#handle#0;class#2396:2657" />
+            <element signature="class#2871:3094" />
+            <element signature="method#handle#0;class#2871:3094" />
             <element signature="e#3347#3494#0" />
             <element signature="class#3376:3845" />
             <element signature="method#handle#0;class#3376:3845" />
-            <element signature="method#makeGridPane#0;class#Main#0" />
-            <element signature="method#drawGrid#0;class#Main#0" />
+            <element signature="class#4096:4302" />
             <element signature="method#parseUserInput#0;class#Main#0" />
             <element signature="method#getClosestPointDouble#0;class#Main#0" />
           </folding>
@@ -494,11 +515,14 @@
         <state relative-caret-position="459">
           <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
           <folding>
+            <element signature="class#2396:2657" />
+            <element signature="method#handle#0;class#2396:2657" />
+            <element signature="class#2871:3094" />
+            <element signature="method#handle#0;class#2871:3094" />
             <element signature="e#3347#3494#0" />
             <element signature="class#3376:3845" />
             <element signature="method#handle#0;class#3376:3845" />
-            <element signature="method#makeGridPane#0;class#Main#0" />
-            <element signature="method#drawGrid#0;class#Main#0" />
+            <element signature="class#4096:4302" />
             <element signature="method#parseUserInput#0;class#Main#0" />
             <element signature="method#getClosestPointDouble#0;class#Main#0" />
           </folding>
@@ -528,11 +552,14 @@
         <state relative-caret-position="68">
           <caret line="8" selection-start-line="8" selection-end-line="8" />
           <folding>
+            <element signature="class#2396:2657" />
+            <element signature="method#handle#0;class#2396:2657" />
+            <element signature="class#2871:3094" />
+            <element signature="method#handle#0;class#2871:3094" />
             <element signature="e#3347#3494#0" />
             <element signature="class#3376:3845" />
             <element signature="method#handle#0;class#3376:3845" />
-            <element signature="method#makeGridPane#0;class#Main#0" />
-            <element signature="method#drawGrid#0;class#Main#0" />
+            <element signature="class#4096:4302" />
             <element signature="method#parseUserInput#0;class#Main#0" />
             <element signature="method#getClosestPointDouble#0;class#Main#0" />
           </folding>
@@ -603,14 +630,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="73" column="51" selection-start-line="73" selection-start-column="51" selection-end-line="73" selection-end-column="51" />
+        <state relative-caret-position="272">
+          <caret line="59" column="130" selection-start-line="59" selection-start-column="130" selection-end-line="59" selection-end-column="130" />
           <folding>
+            <element signature="class#2396:2657" />
+            <element signature="method#handle#0;class#2396:2657" />
+            <element signature="class#2871:3094" />
+            <element signature="method#handle#0;class#2871:3094" />
             <element signature="e#3347#3494#0" />
             <element signature="class#3376:3845" />
             <element signature="method#handle#0;class#3376:3845" />
-            <element signature="method#makeGridPane#0;class#Main#0" />
-            <element signature="method#drawGrid#0;class#Main#0" />
+            <element signature="class#4096:4302" />
             <element signature="method#parseUserInput#0;class#Main#0" />
             <element signature="method#getClosestPointDouble#0;class#Main#0" />
           </folding>

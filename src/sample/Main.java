@@ -27,7 +27,7 @@ import java.awt.geom.Point2D;
  */
 public class Main extends Application
 {
-    // A few global variables - Todo - MAKE MORE OF THESE LOCAL, ESPECIALLY ONES NOT WIDELY USED - This comes after adding all the functionality I want, though
+    // Todo - Make a lot of these into methods
 
     // Maximizing canvas size (it's a little bit smaller than the screen height, because that is the limiting factor
     private double sideLength = Toolkit.getDefaultToolkit().getScreenSize().height - 250;
@@ -51,6 +51,7 @@ public class Main extends Application
     {
         // Linked to the canvas, used to draw stuff
         GraphicsContext gc = canvas.getGraphicsContext2D();
+
 
         primaryStage.setTitle("Arena Design"); // Title of the window
         BorderPane borderPane = new BorderPane(); // The master container-type-thing
@@ -76,7 +77,7 @@ public class Main extends Application
         });
 
         // Todo - Make the "line creation" element of this work
-        canvas.setOnMousePressed(new EventHandler<MouseEvent>()
+        canvas.setOnMouseClicked(new EventHandler<MouseEvent>()
         {
             @Override
             public void handle(MouseEvent e)
@@ -156,6 +157,8 @@ public class Main extends Application
      */
     private void drawGrid(GraphicsContext gc)
     {
+        gc.setLineWidth(1);
+
         /* Quick test with using x and y coordinates relative to the canvas itself */
         // Horizontal lines - 20 = Padding
         for (double i = 0; i <= canvasHeight + 1; i += canvasHeight / numRows)
@@ -168,6 +171,8 @@ public class Main extends Application
         {
             gc.strokeLine(i, 0, i, canvasHeight);
         }
+
+        gc.setLineWidth(4);
     }
 
     /* Validates User Input and stores it in global variables */
@@ -197,7 +202,6 @@ public class Main extends Application
         }
     }
 
-    // For whatever reason it's not even getting to here
     // Draws a line on the canvas with the passed-in coordinates. Works as expected.
     private void drawPermanentLine(double x1, double y1, double x2, double y2, GraphicsContext gc)
     {
