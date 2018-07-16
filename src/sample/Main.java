@@ -23,7 +23,10 @@ import java.awt.*;
 public class Main extends Application
 {
     // A few global variables - Todo - MAKE MORE OF THESE LOCAL, ESPECIALLY ONES NOT WIDELY USED
-    private int canvasWidth = 600, canvasHeight = 600;
+
+    // Maximizing canvas size (it's a little bit smaller than the screen height, because that is the limiting factor
+    private int sideLength = Toolkit.getDefaultToolkit().getScreenSize().height - 250;
+    private int canvasWidth = sideLength, canvasHeight = sideLength;
 
     private int numRows = 0, numColumns = 0;
 
