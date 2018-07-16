@@ -34,12 +34,12 @@ to learn Python's GUI system (Tkinter gets thrown around a lot) in the future, b
 
 - Make line endpoints latch onto the nearest intersection (this will make it look amazing)
 - Make it possible to delete lines (probably by right-clicking on them, that seems the most intuitive)
+- Add the ability to add other structures instead of just walls (Bases, Energizers, Trussle, Pillars, and that's about it)
 
 ##### Relatively Low Priority
 
 - Make it possible to have different shaped arenas instead of just a square (this shouldn't be insanely difficult, but it's obviously not easy
-
-- Make a "preview line" pop
+- Make a "preview line" pop up when the user is dragging the cursor around (this is difficult due to me using JavaFX and GraphicsContext being tricky in that regard, but I'll figure it out given time)
 
 
 
