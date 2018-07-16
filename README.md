@@ -28,5 +28,19 @@ do like it. Everything was pretty straightforward, and everything fell into plac
 logical leaps to fix my issues. Overall, I'm a fan, but even though there are CSS options to fix this, it seems largely outdated. I plan
 to learn Python's GUI system (Tkinter gets thrown around a lot) in the future, because it seems cool.
 
+### What's next for the project?
+
+##### High Priority
+
+- Make line endpoints latch onto the nearest intersection (this will make it look amazing)
+- Make it possible to delete lines (probably by right-clicking on them, that seems the most intuitive)
+
+##### Relatively Low Priority
+
+- Make it possible to have different shaped arenas instead of just a square (this shouldn't be insanely difficult, but it's obviously not easy
+
+- Make a "preview line" pop
+
+
 
 
