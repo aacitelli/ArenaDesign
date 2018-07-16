@@ -12,7 +12,7 @@ Currently my main project, and being actively worked on every day.
 
 ##### High Priority
 
-- Make line endpoints latch onto the nearest intersection (this will make it look amazing)
+- Make line endpoints latch onto the nearest intersection (this will make it look amazing) - Lots of work has been done with this, but I'm almost finished
 - Make it possible to delete lines (probably by right-clicking on them, that seems the most intuitive)
 - Add the ability to add other structures instead of just walls (Bases, Energizers, Trussle, Pillars, and that's about it)
 
@@ -33,10 +33,7 @@ Due to the way I designed the program, it essentially automatically resizes to f
 normally be good, but made it so I had to express most stuff in terms of screen width and other related things, instead of 
 hardcoding values (which is a bad practice in general, and I'm glad that wasn't a viable outcome). 
 
-I havent' done it quite yet, but I expect "collision" (in context to this program, locking onto the nearest intersections both at the 
-beginning and end of the line) to be pretty difficult. I could hardcode the values, but because you can use whatever values for number 
-of rows and columns, I have to account for that (mostly just some math). That will probably take a while to figure out, but will be easy
-from then on.
+I'm partially through collision (latching onto nearby intersections), and it's a pain, but doable. The main difficulty is keeping organized in terms of "pixels", and "grid units", because grid units are different depending on the dimensions you give the grid. I've ended up making conversion methods to make it easier to read, but it's still not a perfect product yet. It's getting there, though.
 
 ### Thoughts on Java/JavaFX
 
