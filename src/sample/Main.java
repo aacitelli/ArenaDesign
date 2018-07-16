@@ -57,8 +57,8 @@ public class Main extends Application
 
         // Making the input system (a GridPane)
         GridPane grid = makeGridPane(); // Makes a GridPane then stores it in the grid object (it's needed to draw all the shapes)
-        boxWidth = canvasWidth / numColumns;
-        boxHeight = canvasHeight / numRows;
+
+
 
         // When the "generate" button is pressed
         generateButton.setOnAction(new EventHandler<ActionEvent>()
@@ -69,6 +69,9 @@ public class Main extends Application
                 clearGrid(gc);
                 parseUserInput(widthField, heightField);
                 drawGrid(gc);
+
+                boxWidth = canvasWidth / numColumns;
+                boxHeight = canvasHeight / numRows;
             }
         });
 
@@ -78,17 +81,19 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent e)
             {
+                // These need stored to draw the line at the end
                 originalXPos = e.getX();
                 originalYPos = e.getY();
             }
         });
 
-        // Todo - Implement a real-time preview of the line
+        // Todo - Implement a real-time preview of the line (this is much harder than it seems cause I have to use GraphicsContext due to this being JavaFX
         // This is when the mouse is moved around, pressed down
         canvas.setOnMouseDragged(new EventHandler<MouseEvent>()
         {
             public void handle(MouseEvent e)
             {
+
             }
         });
 
@@ -192,6 +197,7 @@ public class Main extends Application
         }
     }
 
+    // For whatever reason it's not even getting to here
     // Draws a line on the canvas with the passed-in coordinates. Works as expected.
     private void drawPermanentLine(double x1, double y1, double x2, double y2, GraphicsContext gc)
     {
@@ -217,41 +223,41 @@ public class Main extends Application
     }
 
     // Todo - Fix this (it's returning the original places and not doing any snapping for whatever reason)
+    // This is a REALLY fun method (meaning it's complicated as all hell, but surprisingly coherent for me
     private Point2D.Double getClosestPointDouble(double xPos, double yPos)
     {
-        // Converts the positions into grid coordinates essentially
-        double xPosInBoxes = xPos / boxWidth;
-        double yPosInBoxes = yPos / boxHeight;
+        // Need converted into grid units so it's easier to compare to see what side it's on. Rounds up starting at .5
+        double xPosInBoxes = convertDoubleXToGridUnits(xPos);
+        double yPosInBoxes = convertDoubleYToGridUnits(yPos);
 
-        // If it's on the right side of its box
+        // Comparisons are done in grid units, then transformed back to pixels when returning the actual point
         if (Math.abs(xPosInBoxes - Math.floor(xPosInBoxes)) >= .5)
         {
-            // If it's on the bottom
+            // Bottom-Right of it's box
             if (Math.abs(yPosInBoxes - Math.floor(yPosInBoxes)) >= .5)
             {
-                return new Point2D.Double((xPosInBoxes + 1) / boxWidth, (yPosInBoxes + 1) / boxHeight);
+                return new Point2D.Double(convertGridXToDoubleUnits(Math.ceil(xPosInBoxes)), convertGridYToDoubleUnits(Math.ceil(yPosInBoxes)));
             }
 
-            // If it's on the top
+            // Top-Right of it's box
             else
             {
-                return new Point2D.Double((xPosInBoxes + 1) / boxWidth, (yPosInBoxes) / boxHeight);
+                return new Point2D.Double(convertGridXToDoubleUnits(Math.ceil(xPosInBoxes)), convertGridYToDoubleUnits(Math.floor(yPosInBoxes)));
             }
         }
 
-        // If it's on the left side of nts box
         else
         {
-            // If it's on the bottom
+            // Bottom-Left of it's box
             if (Math.abs(yPosInBoxes - Math.floor(yPosInBoxes)) >= .5)
             {
-                return new Point2D.Double((xPosInBoxes) / boxWidth, (yPosInBoxes + 1) / boxHeight);
+                return new Point2D.Double(convertGridXToDoubleUnits(Math.floor(xPosInBoxes)), convertGridYToDoubleUnits(Math.ceil(yPosInBoxes)));
             }
 
-            // If it's on the top
+            // Top-Left of it's box
             else
             {
-                return new Point2D.Double((xPosInBoxes + 1) / boxWidth, (yPosInBoxes + 1) / boxHeight);
+                return new Point2D.Double(convertGridXToDoubleUnits(Math.floor(xPosInBoxes)) , convertGridYToDoubleUnits(Math.floor(yPosInBoxes)));
             }
         }
     }
