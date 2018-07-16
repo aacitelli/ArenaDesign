@@ -38,7 +38,7 @@ public class Main extends Application
     private TextField widthField = new TextField(), heightField = new TextField(); // These values are used in several methods
     private Button generateButton = new Button ("Generate Arena w/ Specified Parameters"); // Todo - Make this a local variable (pass it into functions and stuff)
 
-    private double originalXPos = 0, originalYPos = 0;
+    private double originalXPos = 0, originalYPos = 0, finalXPos = 0, finalYPos = 0;
 
     // Holds the grid matrix of lines itself
     private Canvas canvas = new Canvas(canvasWidth, canvasHeight);
@@ -104,6 +104,8 @@ public class Main extends Application
         {
             public void handle(MouseEvent e)
             {
+                finalXPos = e.getX();
+                finalYPos = e.getY();
                 drawPermanentLine(originalXPos, originalYPos, e.getX(), e.getY(), gc);
             }
         });
@@ -211,13 +213,19 @@ public class Main extends Application
         int boxX = (int)Math.floor((originalXPos / (canvasWidth / numColumns)));
         int boxY = (int)Math.floor((originalYPos / (canvasHeight / numRows)));
 
+        int boxX2 = (int)Math.floor((finalXPos / (canvasWidth / numColumns)));
+        int boxY2 = (int)Math.floor((finalYPos / (canvasHeight / numRows)));
+
+
+
         Point2D.Double closestPoint1, closestPoint2; // 1 is the starting point, 2 is the ending point
 
-        // Todo - Make this a method that returns a Point object. Methodizing is pretty much always a good idea.
+        // Todo - Make this a method that returns a Point object of the closest point. I'm doing the same thing twice, which is not good and takes up a lot of space.
         // Figuring out which intercept is the closest to the original point
-        if ((double)boxX - originalXPos < .5)
+        // Left Half of the box
+        if (Math.abs((double)boxX - originalXPos) < .5)
         {
-            if ((double)boxY - originalYPos < .5) // Top-left half of the box
+            if (Math.abs((double)boxY - originalYPos) < .5) // Top-left half of the box
             {
                 closestPoint1 = new Point2D.Double(boxX * (canvasWidth / numColumns), boxY * (canvasHeight / numRows));
             }
@@ -228,9 +236,10 @@ public class Main extends Application
             }
         }
 
-        else // If it's on the right side of the box
+        // Right side of the box
+        else
         {
-            if ((double)boxY - originalYPos < .5) // Top-right
+            if (Math.abs((double)boxY - originalYPos) < .5) // Top-right
             {
                 closestPoint1 = new Point2D.Double((boxX * (canvasWidth / numColumns)) + (canvasWidth / numColumns), boxY * (canvasHeight / numRows));
             }
@@ -242,7 +251,32 @@ public class Main extends Application
         }
 
         // Figuring out which intercept is closest to the endpoint (done indentically to the method above)
-        // Todo - Implement this
+        if (Math.abs((double)boxX - finalXPos) < .5)
+        {
+            if (Math.abs((double)boxY - finalYPos) < .5) // Top-left half of the box
+            {
+                closestPoint2 = new Point2D.Double(boxX2 * (canvasWidth / numColumns), boxY2 * (canvasHeight / numRows));
+            }
+
+            else // Bottom-left half of the box
+            {
+                closestPoint2 = new Point2D.Double(boxX2 * (canvasWidth / numColumns), (boxY2 * (canvasHeight / numRows)) + (canvasHeight / numRows));
+            }
+        }
+
+        // Right side of the box
+        else
+        {
+            if (Math.abs((double)boxY - finalYPos) < .5) // Top-right
+            {
+                closestPoint2 = new Point2D.Double((boxX2 * (canvasWidth / numColumns)) + (canvasWidth / numColumns), boxY2 * (canvasHeight / numRows));
+            }
+
+            else // Bottom-right half of the box
+            {
+                closestPoint2 = new Point2D.Double((boxX2 * (canvasWidth / numColumns)) + (canvasWidth / numColumns), (boxY2 * (canvasHeight / numRows)) + (canvasHeight / numRows));
+            }
+        }
 
         /* These two if statements check that it isn't too long to be a legitimate barrier (the longest of which
             can be the square root of 8. The 25 is just a little bit of leeway.     */
@@ -252,7 +286,7 @@ public class Main extends Application
             // The 1.1f is multiplicative instead of a hardcoded pixel value so that it works fine even with more rows/columns
             if (distance < Math.sqrt(8) * canvasWidth / numColumns * 1.1f)
             {
-                gc.strokeLine(closestPoint1.getX(), closestPoint1.getY(), x2, y2);
+                gc.strokeLine(closestPoint1.getX(), closestPoint1.getY(), closestPoint2.getX(), closestPoint2.getY());
             }
 
             // If the line is too long
@@ -267,7 +301,7 @@ public class Main extends Application
         {
             if (distance < Math.sqrt(8) * canvasHeight / numColumns * 1.1f)
             {
-                gc.strokeLine(closestPoint1.getX(), closestPoint1.getY(), x2, y2);
+                gc.strokeLine(closestPoint1.getX(), closestPoint1.getY(), closestPoint2.getX(), closestPoint2.getY());
             }
 
             // If the line is too long
