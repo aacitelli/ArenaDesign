@@ -20,13 +20,17 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 
+/* Ideas:
+    - Implement zooming in and out
+    - Make it so the user can take "chunks" out of the arena (not every arena is a perfect square, the XLS arena included)
+ */
 public class Main extends Application
 {
     // A few global variables - Todo - MAKE MORE OF THESE LOCAL, ESPECIALLY ONES NOT WIDELY USED
 
     // Maximizing canvas size (it's a little bit smaller than the screen height, because that is the limiting factor
-    private int sideLength = Toolkit.getDefaultToolkit().getScreenSize().height - 250;
-    private int canvasWidth = sideLength, canvasHeight = sideLength;
+    private double sideLength = Toolkit.getDefaultToolkit().getScreenSize().height - 250;
+    private double canvasWidth = sideLength, canvasHeight = sideLength;
 
     private int numRows = 0, numColumns = 0;
 
@@ -38,7 +42,7 @@ public class Main extends Application
 
     // Holds the grid matrix of lines itself
     private Canvas canvas = new Canvas(canvasWidth, canvasHeight);
-    Text buttonNotification = new Text();
+    private Text buttonNotification = new Text();
 
     @Override
     public void start(Stage primaryStage)
@@ -52,7 +56,7 @@ public class Main extends Application
         // Making the input system (a GridPane)
         GridPane grid = makeGridPane(); // Makes a GridPane then stores it in the grid object (it's needed to draw all the shapes)
 
-        // Button action event
+        // When the "generate" button is pressed
         generateButton.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -66,6 +70,7 @@ public class Main extends Application
 
         // Todo - Make this work
         // Todo - Make it lock onto the nearest intersection on the grid
+        // When the mouse is pressed down on a point on the canvas
         canvas.setOnMousePressed(new EventHandler<MouseEvent>()
         {
             @Override
@@ -78,6 +83,7 @@ public class Main extends Application
 
         // Todo - Implement This (It still works, but this would make this look a lot better
         // Todo - Make it so line can't get longer than a certain length
+        // When the mouse is moved around when it is pressed on the canvas
         canvas.setOnMouseDragged(new EventHandler<MouseEvent>()
         {
             public void handle(MouseEvent e)
@@ -93,6 +99,7 @@ public class Main extends Application
         });
 
         // Todo - Reject line if it's longer than a certain length (roughly sqrt(5) - Pythagorean theorem) units plus a very small amount
+        // When the mouse is released when it is pressed on the canvas
         canvas.setOnMouseReleased(new EventHandler<MouseEvent>()
         {
             public void handle(MouseEvent e)
@@ -144,19 +151,22 @@ public class Main extends Application
         return grid;
     }
 
-    // Todo - Make this mathematically sound (it's inaccurate at high values, so something's off
-    // I legitimately have no clue what's wrong with this
+    /* Ok, this is fixed!
+        My issue was that some of the stuff getting divided was integers.
+        This meant decimals were getting dropped occasionally, and after
+        doing this several times, it became off by a very large amount.
+     */
     private void drawGrid(GraphicsContext gc)
     {
         /* Quick test with using x and y coordinates relative to the canvas itself */
         // Horizontal lines - 20 = Padding
-        for (double i = 0; i <= canvasHeight; i += canvasHeight / numRows)
+        for (double i = 0; i <= canvasHeight + 1; i += canvasHeight / numRows)
         {
             gc.strokeLine(0, i, canvasWidth, i);
         }
 
         // Vertical lines - 20 = Padding
-        for (double i = 0; i <= canvasWidth; i += canvasWidth / numColumns)
+        for (double i = 0; i <= canvasWidth + 1; i += canvasWidth / numColumns)
         {
             gc.strokeLine(i, 0, i, canvasHeight);
         }
