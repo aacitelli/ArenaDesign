@@ -19,6 +19,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 /* Ideas:
     - Implement zooming in and out
@@ -37,7 +38,6 @@ public class Main extends Application
     private TextField widthField = new TextField(), heightField = new TextField(); // These values are used in several methods
     private Button generateButton = new Button ("Generate Arena w/ Specified Parameters"); // Todo - Make this a local variable (pass it into functions and stuff)
 
-    private Line currentLine; // Used for the line that the user is currently drawing
     private double originalXPos = 0, originalYPos = 0;
 
     // Holds the grid matrix of lines itself
@@ -206,16 +206,53 @@ public class Main extends Application
         double distance = Math.sqrt(Math.abs(Math.pow(Math.abs(x1 - x2), 2) + Math.pow(Math.abs(y1 - y2), 2)));
         buttonNotification.setText(""); // Resetting this so the error message for the line being too long doesn't stay up for too long
 
+        // Converts them into the boxes they are in - Note that the upper-leftmost box is (1, 1), and not (0, 0).
+        // These need cast to integers because apparently Math.floor doesn't convert to integer, and I really don't care about the decimals
+        int boxX = (int)Math.floor((originalXPos / (canvasWidth / numColumns)));
+        int boxY = (int)Math.floor((originalYPos / (canvasHeight / numRows)));
+
+        Point2D.Double closestPoint1, closestPoint2; // 1 is the starting point, 2 is the ending point
+
+        // Todo - Make this a method that returns a Point object. Methodizing is pretty much always a good idea.
+        // Figuring out which intercept is the closest to the original point
+        if ((double)boxX - originalXPos < .5)
+        {
+            if ((double)boxY - originalYPos < .5) // Top-left half of the box
+            {
+                closestPoint1 = new Point2D.Double(boxX * (canvasWidth / numColumns), boxY * (canvasHeight / numRows));
+            }
+
+            else // Bottom-left half of the box
+            {
+                closestPoint1 = new Point2D.Double(boxX * (canvasWidth / numColumns), (boxY * (canvasHeight / numRows)) + (canvasHeight / numRows));
+            }
+        }
+
+        else // If it's on the right side of the box
+        {
+            if ((double)boxY - originalYPos < .5) // Top-right
+            {
+                closestPoint1 = new Point2D.Double((boxX * (canvasWidth / numColumns)) + (canvasWidth / numColumns), boxY * (canvasHeight / numRows));
+            }
+
+            else // Bottom-right half of the box
+            {
+                closestPoint1 = new Point2D.Double((boxX * (canvasWidth / numColumns)) + (canvasWidth / numColumns), (boxY * (canvasHeight / numRows)) + (canvasHeight / numRows));
+            }
+        }
+
+        // Figuring out which intercept is closest to the endpoint (done indentically to the method above)
+        // Todo - Implement this
+
         /* These two if statements check that it isn't too long to be a legitimate barrier (the longest of which
             can be the square root of 8. The 25 is just a little bit of leeway.     */
-
         // Wider than it is tall
         if (Math.abs(x1 - x2) > Math.abs(y1 - y2))
         {
             // The 1.1f is multiplicative instead of a hardcoded pixel value so that it works fine even with more rows/columns
             if (distance < Math.sqrt(8) * canvasWidth / numColumns * 1.1f)
             {
-                gc.strokeLine(x1, y1, x2, y2);
+                gc.strokeLine(closestPoint1.getX(), closestPoint1.getY(), x2, y2);
             }
 
             // If the line is too long
@@ -230,7 +267,7 @@ public class Main extends Application
         {
             if (distance < Math.sqrt(8) * canvasHeight / numColumns * 1.1f)
             {
-                gc.strokeLine(x1, y1, x2, y2);
+                gc.strokeLine(closestPoint1.getX(), closestPoint1.getY(), x2, y2);
             }
 
             // If the line is too long
