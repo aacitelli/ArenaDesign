@@ -204,22 +204,16 @@ public class Main extends Application
     // Draws a line on the canvas with the passed-in coordinates. Works as expected.
     private void drawPermanentLine(double x1, double y1, double x2, double y2, GraphicsContext gc)
     {
-        // Distance formula
-        double distance = Math.sqrt(Math.abs(Math.pow(Math.abs(x1 - x2), 2) + Math.pow(Math.abs(y1 - y2), 2)));
         buttonNotification.setText(""); // Resetting this so the error message for the line being too long doesn't stay up for too long
 
-        // Converts them into the boxes they are in - Note that the upper-leftmost box is (1, 1), and not (0, 0).
-        // These need cast to integers because apparently Math.floor doesn't convert to integer, and I really don't care about the decimals
-        int boxX = (int)Math.floor((originalXPos / (canvasWidth / numColumns)));
-        int boxY = (int)Math.floor((originalYPos / (canvasHeight / numRows)));
+        Point2D.Double snapPoint1 = getClosestPointDouble(originalXPos, originalYPos); // Point 1 of the drawn line
+        Point2D.Double snapPoint2 = getClosestPointDouble(finalXPos, finalYPos); // Point 2 of the drawn line
 
-        int boxX2 = (int)Math.floor((finalXPos / (canvasWidth / numColumns)));
-        int boxY2 = (int)Math.floor((finalYPos / (canvasHeight / numRows)));
+        // Distance formula
+        double distance = Math.sqrt(Math.abs(Math.pow(Math.abs(snapPoint1.getX() * (canvasWidth / numColumns)) - snapPoint2.getX() * (canvasWidth / numColumns), 2) // X Component
+                                           + Math.pow(Math.abs(snapPoint1.getY() * (canvasHeight / numRows) - snapPoint2.getY() * (canvasHeight / numRows)), 2))); // Y Component
 
-
-
-        Point2D.Double closestPoint1, closestPoint2; // 1 is the starting point, 2 is the ending point
-
+        /* Backup code that works decently but is easily methodized
         // Todo - Make this a method that returns a Point object of the closest point. I'm doing the same thing twice, which is not good and takes up a lot of space.
         // Figuring out which intercept is the closest to the original point
         // Left Half of the box
@@ -277,6 +271,7 @@ public class Main extends Application
                 closestPoint2 = new Point2D.Double((boxX2 * (canvasWidth / numColumns)) + (canvasWidth / numColumns), (boxY2 * (canvasHeight / numRows)) + (canvasHeight / numRows));
             }
         }
+        */
 
         /* These two if statements check that it isn't too long to be a legitimate barrier (the longest of which
             can be the square root of 8. The 25 is just a little bit of leeway.     */
@@ -286,7 +281,7 @@ public class Main extends Application
             // The 1.1f is multiplicative instead of a hardcoded pixel value so that it works fine even with more rows/columns
             if (distance < Math.sqrt(8) * canvasWidth / numColumns * 1.1f)
             {
-                gc.strokeLine(closestPoint1.getX(), closestPoint1.getY(), closestPoint2.getX(), closestPoint2.getY());
+                gc.strokeLine(snapPoint1.getX(), snapPoint1.getY(), snapPoint2.getX(), snapPoint2.getY());
             }
 
             // If the line is too long
@@ -301,13 +296,52 @@ public class Main extends Application
         {
             if (distance < Math.sqrt(8) * canvasHeight / numColumns * 1.1f)
             {
-                gc.strokeLine(closestPoint1.getX(), closestPoint1.getY(), closestPoint2.getX(), closestPoint2.getY());
+                gc.strokeLine(snapPoint1.getX(), snapPoint1.getY(), snapPoint2.getX(), snapPoint2.getY());
             }
 
             // If the line is too long
             else
             {
                 buttonNotification.setText("Segment is too long! Please try again.");
+            }
+        }
+    }
+
+    private Point2D.Double getClosestPointDouble(double xPos, double yPos)
+    {
+        // Converts the positions into grid coordinates essentially
+        double xPosInBoxes = xPos * (canvasWidth / numColumns);
+        double yPosInBoxes = yPos * (canvasHeight / numRows);
+
+        // If it's on the right side of its box
+        if (Math.abs(xPosInBoxes - Math.floor(xPosInBoxes)) >= .5)
+        {
+            // If it's on the bottom
+            if (Math.abs(yPosInBoxes - Math.floor(yPosInBoxes)) >= .5)
+            {
+                return new Point2D.Double((xPosInBoxes + 1) * (canvasWidth / numColumns), (yPosInBoxes + 1) * (canvasHeight / numRows));
+            }
+
+            // If it's on the top
+            else
+            {
+                return new Point2D.Double((xPosInBoxes + 1) * (canvasWidth / numColumns), (yPosInBoxes) * (canvasHeight / numRows));
+            }
+        }
+
+        // If it's on the left side of nts box
+        else
+        {
+            // If it's on the bottom
+            if (Math.abs(yPosInBoxes - Math.floor(yPosInBoxes)) >= .5)
+            {
+                return new Point2D.Double((xPosInBoxes) * (canvasWidth / numColumns), (yPosInBoxes + 1) * (canvasHeight / numRows));
+            }
+
+            // If it's on the top
+            else
+            {
+                return new Point2D.Double((xPosInBoxes + 1) * (canvasWidth / numColumns), (yPosInBoxes + 1) * (canvasHeight / numRows));
             }
         }
     }

@@ -63,8 +63,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="222" column="165" selection-start-line="222" selection-start-column="165" selection-end-line="222" selection-end-column="165" />
+            <state relative-caret-position="212">
+              <caret line="212" column="163" selection-start-line="212" selection-start-column="163" selection-end-line="212" selection-end-column="163" />
               <folding>
                 <element signature="method#makeGridPane#0;class#Main#0" />
                 <element signature="method#drawGrid#0;class#Main#0" />
@@ -545,8 +545,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="222" column="165" selection-start-line="222" selection-start-column="165" selection-end-line="222" selection-end-column="165" />
+        <state relative-caret-position="212">
+          <caret line="212" column="163" selection-start-line="212" selection-start-column="163" selection-end-line="212" selection-end-column="163" />
           <folding>
             <element signature="method#makeGridPane#0;class#Main#0" />
             <element signature="method#drawGrid#0;class#Main#0" />
