@@ -27,7 +27,7 @@ import java.awt.geom.Point2D;
  */
 public class Main extends Application
 {
-    // A few global variables - Todo - MAKE MORE OF THESE LOCAL, ESPECIALLY ONES NOT WIDELY USED
+    // A few global variables - Todo - MAKE MORE OF THESE LOCAL, ESPECIALLY ONES NOT WIDELY USED - This comes after adding all the functionality I want, though
 
     // Maximizing canvas size (it's a little bit smaller than the screen height, because that is the limiting factor
     private double sideLength = Toolkit.getDefaultToolkit().getScreenSize().height - 250;
@@ -44,6 +44,8 @@ public class Main extends Application
     private Canvas canvas = new Canvas(canvasWidth, canvasHeight);
     private Text buttonNotification = new Text();
 
+    private double boxWidth = 0, boxHeight = 0; // These are used a TON throughout the program, they are just variables for clarity
+
     @Override
     public void start(Stage primaryStage)
     {
@@ -55,6 +57,8 @@ public class Main extends Application
 
         // Making the input system (a GridPane)
         GridPane grid = makeGridPane(); // Makes a GridPane then stores it in the grid object (it's needed to draw all the shapes)
+        boxWidth = canvasWidth / numColumns;
+        boxHeight = canvasHeight / numRows;
 
         // When the "generate" button is pressed
         generateButton.setOnAction(new EventHandler<ActionEvent>()
@@ -68,9 +72,7 @@ public class Main extends Application
             }
         });
 
-        // Todo - Make this work
-        // Todo - Make it lock onto the nearest intersection on the grid
-        // When the mouse is pressed down on a point on the canvas
+        // Todo - Make the "line creation" element of this work
         canvas.setOnMousePressed(new EventHandler<MouseEvent>()
         {
             @Override
@@ -81,24 +83,15 @@ public class Main extends Application
             }
         });
 
-        // Todo - Implement This (It still works, but this would make this look a lot better
-        // Todo - Make it so line can't get longer than a certain length
-        // When the mouse is moved around when it is pressed on the canvas
+        // Todo - Implement a real-time preview of the line
+        // This is when the mouse is moved around, pressed down
         canvas.setOnMouseDragged(new EventHandler<MouseEvent>()
         {
             public void handle(MouseEvent e)
             {
-                /* What I want to do here:
-                    Remove the last line drawn. (Once I figure out how to do this, of course)
-                    Using GraphicsContext to draw an up-to-date line.
-                 */
-
-                // Drawing the new line
-                // gc.strokeLine(originalXPos, originalYPos, e.getX(), e.getY());
             }
         });
 
-        // Todo - Reject line if it's longer than a certain length (roughly sqrt(5) - Pythagorean theorem) units plus a very small amount
         // When the mouse is released when it is pressed on the canvas
         canvas.setOnMouseReleased(new EventHandler<MouseEvent>()
         {
@@ -208,13 +201,13 @@ public class Main extends Application
         Point2D.Double snapPoint2 = getClosestPointDouble(x2, y2); // Point 2 of the drawn line
 
         // Distance formula sqrt(x1-x2)^2 + (y1 - y2)^2)
-        double distance = Math.sqrt(Math.pow((snapPoint1.getX() / (canvasWidth / numColumns)) - (snapPoint2.getX() / (canvasWidth / numColumns)), 2) // X Component
-                                  + Math.pow((snapPoint1.getY() / (canvasHeight / numRows)) - (snapPoint2.getY() / (canvasHeight / numRows)), 2)); // Y Component
+        double distance = Math.sqrt(Math.pow((snapPoint1.getX() / boxWidth) - (snapPoint2.getX() / boxWidth), 2) // X Component
+                                  + Math.pow((snapPoint1.getY() / boxHeight) - (snapPoint2.getY() / boxHeight), 2)); // Y Component
 
+        // Todo - Format this so it's not like ten decimals (use DecimalFormat?)
         if (distance > Math.sqrt(8) * 1.05f)
         {
-            buttonNotification.setText(Double.toString(distance));
-            //buttonNotification.setText("Line is too long! Please try again.");
+            buttonNotification.setText("A line distance of " + Double.toString(distance) + " is too long! Please try to draw a new line.");
         }
 
         else
@@ -223,11 +216,12 @@ public class Main extends Application
         }
     }
 
+    // Todo - Fix this (it's returning the original places and not doing any snapping for whatever reason)
     private Point2D.Double getClosestPointDouble(double xPos, double yPos)
     {
         // Converts the positions into grid coordinates essentially
-        double xPosInBoxes = xPos * (canvasWidth / numColumns);
-        double yPosInBoxes = yPos * (canvasHeight / numRows);
+        double xPosInBoxes = xPos / boxWidth;
+        double yPosInBoxes = yPos / boxHeight;
 
         // If it's on the right side of its box
         if (Math.abs(xPosInBoxes - Math.floor(xPosInBoxes)) >= .5)
@@ -235,13 +229,13 @@ public class Main extends Application
             // If it's on the bottom
             if (Math.abs(yPosInBoxes - Math.floor(yPosInBoxes)) >= .5)
             {
-                return new Point2D.Double((xPosInBoxes + 1) / (canvasWidth / numColumns), (yPosInBoxes + 1) / (canvasHeight / numRows));
+                return new Point2D.Double((xPosInBoxes + 1) / boxWidth, (yPosInBoxes + 1) / boxHeight);
             }
 
             // If it's on the top
             else
             {
-                return new Point2D.Double((xPosInBoxes + 1) / (canvasWidth / numColumns), (yPosInBoxes) / (canvasHeight / numRows));
+                return new Point2D.Double((xPosInBoxes + 1) / boxWidth, (yPosInBoxes) / boxHeight);
             }
         }
 
@@ -251,22 +245,47 @@ public class Main extends Application
             // If it's on the bottom
             if (Math.abs(yPosInBoxes - Math.floor(yPosInBoxes)) >= .5)
             {
-                return new Point2D.Double((xPosInBoxes) / (canvasWidth / numColumns), (yPosInBoxes + 1) / (canvasHeight / numRows));
+                return new Point2D.Double((xPosInBoxes) / boxWidth, (yPosInBoxes + 1) / boxHeight);
             }
 
             // If it's on the top
             else
             {
-                return new Point2D.Double((xPosInBoxes + 1) / (canvasWidth / numColumns), (yPosInBoxes + 1) / (canvasHeight / numRows));
+                return new Point2D.Double((xPosInBoxes + 1) / boxWidth, (yPosInBoxes + 1) / boxHeight);
             }
         }
     }
 
     // Kinda hacky, but it works by putting a white rectangle over the entire canvas.
     // Todo - More garbage collection (None of the shapes get deleted AFAIK, just get a white box drawn over them
+    // Idea on how to fix - Set the canvas equal to a new grid and redraw the grid with whatever's in the input boxes
     private void clearGrid(GraphicsContext gc)
     {
         gc.clearRect(0, 0, canvasWidth, canvasHeight);
+    }
+
+    // Takes a x in pixels and converts it into grid units - Small utility function
+    private double convertDoubleXToGridUnits(double x)
+    {
+        return x / boxWidth;
+    }
+
+    // Takes a y in pixels and coverts it into grid units - Small utility function
+    private double convertDoubleYToGridUnits(double y)
+    {
+        return y / boxHeight;
+    }
+
+    // Takes a x in grid units and converts it into pixels - Small utility function
+    private double convertGridXToDoubleUnits(double x)
+    {
+        return x * boxWidth;
+    }
+
+    // Takes a y in grid units and converts it into pixels - Small utility function
+    private double convertGridYToDoubleUnits(double y)
+    {
+        return y * boxHeight;
     }
 
     public static void main(String[] args)
