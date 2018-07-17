@@ -12,7 +12,8 @@ Currently my main project, and being actively worked on every day.
 
 ##### High Priority
 
-- Make it possible to delete lines (probably by right-clicking on them; that seems the most intuitive)
+- Fix the seemingly little random bugs in snapping (sometimes it just doesn't draw a line, other times it just plain draws a line in the wrong place) - Probably overwriting a value by accident somewhere, but I guess we'll see
+- Make it possible to delete lines (probably by dragging over them with right click held; that seems the most intuitive)
 - Add the ability to add other structures instead of just walls (Bases, Energizers, Trussle, Pillars, and that's about it)
 
 ##### Relatively Low Priority
