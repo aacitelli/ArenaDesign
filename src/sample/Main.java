@@ -62,11 +62,11 @@ public class Main extends Application
             @Override
             public void handle(ActionEvent e)
             {
-                clearGrid(gc, canvasWidth, canvasHeight);
-                drawGrid(gc, canvasWidth, canvasHeight);
-
                 numRows = parseRows(heightField);
                 numColumns = parseColumns(widthField);
+
+                clearGrid(gc, canvasWidth, canvasHeight);
+                drawGrid(gc, canvasWidth, canvasHeight);
 
                 boxWidth = canvasWidth / numColumns;
                 boxHeight = canvasHeight / numRows;
@@ -79,7 +79,7 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent e)
             {
-                firstClick = new Point2D.Double(e.getX(), e.getY());
+                firstClick.setLocation(e.getX(), e.getY());
             }
         });
 
