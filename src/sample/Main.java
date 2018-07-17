@@ -29,7 +29,7 @@ import java.text.DecimalFormat;
 public class Main extends Application
 {
     // Todo - Make a lot of these into methods
-    private Point2D.Double firstClick;
+    private Point2D.Double firstClick = new Point2D.Double();
     private double numRows, numColumns;
 
     private Button generateButton = new Button ("Generate Arena w/ Specified Parameters"); // Todo - Make this nonglobal
