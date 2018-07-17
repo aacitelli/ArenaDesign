@@ -136,90 +136,6 @@ public class Main extends Application
         return grid;
     }
 
-    /* Ok, this is fixed!
-        My issue was that some of the stuff getting divided was integers.
-        This meant decimals were getting dropped occasionally, and after
-        doing this several times, it became off by a very large amount.
-     */
-    private void drawGrid(GraphicsContext gc, double canvasWidth, double canvasHeight)
-    {
-        gc.setLineWidth(1);
-
-        /* Quick test with using x and y coordinates relative to the canvas itself */
-        // Horizontal lines - 20 = Padding
-        for (double i = 0; i <= canvasHeight + 1; i += canvasHeight / numRows)
-        {
-            gc.strokeLine(0, i, canvasWidth, i);
-        }
-
-        // Vertical lines - 20 = Padding
-        for (double i = 0; i <= canvasWidth + 1; i += canvasWidth / numColumns)
-        {
-            gc.strokeLine(i, 0, i, canvasHeight);
-        }
-
-        gc.setLineWidth(4);
-    }
-
-    /* Validates User Input and stores it in global variables */
-    // Todo - Figure out if it's possible to make this w/ more local variables
-    private double parseColumns(TextField widthField)
-    {
-        // Getting the number of columns
-        try
-        {
-            return Integer.parseInt(widthField.getText());
-        }
-
-        catch (Exception e)
-        {
-            System.out.println("There was an error getting the number of columns.");
-            return 100;
-        }
-    }
-
-    private double parseRows(TextField heightField)
-    {
-        // Getting the number of rows
-        try
-        {
-            return Integer.parseInt(heightField.getText());
-        }
-
-        catch (Exception e)
-        {
-            System.out.println("There was an error getting the number of rows.");
-            return 100;
-        }
-    }
-
-    // Draws a line on the canvas with the passed-in coordinates. Works as expected.
-    private void drawPermanentLine(double x1, double y1, double x2, double y2, GraphicsContext gc)
-    {
-        buttonNotification.setText(""); // Resetting this so the error message for the line being too long doesn't stay up for too long
-
-        Point2D.Double snapPoint1 = getClosestPointDouble(x1, y1); // Point 1 of the drawn line
-        Point2D.Double snapPoint2 = getClosestPointDouble(x2, y2); // Point 2 of the drawn line
-
-        // Distance formula sqrt(x1-x2)^2 + (y1 - y2)^2)
-        double distance = getDistanceBetweenPoints(snapPoint1, snapPoint2);
-
-        // Todo - Format this so it's not like ten decimals (use DecimalFormat?)
-        if (distance > Math.sqrt(8) * 1.05)
-        {
-            DecimalFormat decimalFormat = new DecimalFormat("###.##");
-            buttonNotification.setText("A line distance of " + decimalFormat.format(distance) + " is too long! Please try to draw a new line.");
-        }
-
-        else
-        {
-            gc.strokeLine(snapPoint1.getX(), snapPoint1.getY(), snapPoint2.getX(), snapPoint2.getY());
-        }
-
-        // Resetting the original position
-        firstClick = new Point2D.Double();
-    }
-
     // Returns the distance (double) between two passed-in points
     private double getDistanceBetweenPoints(Point2D.Double point1, Point2D.Double point2)
     {
@@ -268,13 +184,112 @@ public class Main extends Application
         }
     }
 
-    // Kinda hacky, but it works by putting a white rectangle over the entire canvas.
-    // Todo - More garbage collection (None of the shapes get deleted AFAIK, just get a white box drawn over them
-    // Idea on how to fix - Set the canvas equal to a new grid and redraw the grid with whatever's in the input boxes
+    //------------------------------------------------------------------------------------------------------------------
+    // Drawing Methods
+    //------------------------------------------------------------------------------------------------------------------
+
+    // Draws a line on the canvas with the passed-in coordinates. Works as expected.
+    private void drawPermanentLine(double x1, double y1, double x2, double y2, GraphicsContext gc)
+    {
+        buttonNotification.setText(""); // Resetting this so the error message for the line being too long doesn't stay up for too long
+
+        Point2D.Double snapPoint1 = getClosestPointDouble(x1, y1); // Point 1 of the drawn line
+        Point2D.Double snapPoint2 = getClosestPointDouble(x2, y2); // Point 2 of the drawn line
+
+        // Distance formula sqrt(x1-x2)^2 + (y1 - y2)^2)
+        double distance = getDistanceBetweenPoints(snapPoint1, snapPoint2);
+
+        // Todo - Format this so it's not like ten decimals (use DecimalFormat?)
+        if (distance > Math.sqrt(8) * 1.05)
+        {
+            DecimalFormat decimalFormat = new DecimalFormat("###.##");
+            buttonNotification.setText("A line distance of " + decimalFormat.format(distance) + " is too long! Please try to draw a new line.");
+        }
+
+        else
+        {
+            gc.strokeLine(snapPoint1.getX(), snapPoint1.getY(), snapPoint2.getX(), snapPoint2.getY());
+        }
+
+        // Resetting the original position
+        firstClick = new Point2D.Double();
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    // Grid Methods
+    //------------------------------------------------------------------------------------------------------------------
+
+    // Clears the grid by essentially drawing a big white rectangle over it, to the best of my knowledge
+    // No idea if this actually does garbage collection, but if it doesn't we have a very, very slow memory leak
     private void clearGrid(GraphicsContext gc, double canvasWidth, double canvasHeight)
     {
         gc.clearRect(0, 0, canvasWidth, canvasHeight);
     }
+
+    /* Ok, this is fixed!
+        My issue was that some of the stuff getting divided was integers.
+        This meant decimals were getting dropped occasionally, and after
+        doing this several times, it became off by a very large amount.
+     */
+    private void drawGrid(GraphicsContext gc, double canvasWidth, double canvasHeight)
+    {
+        gc.setLineWidth(1);
+
+        /* Quick test with using x and y coordinates relative to the canvas itself */
+        // Horizontal lines - 20 = Padding
+        for (double i = 0; i <= canvasHeight + 1; i += canvasHeight / numRows)
+        {
+            gc.strokeLine(0, i, canvasWidth, i);
+        }
+
+        // Vertical lines - 20 = Padding
+        for (double i = 0; i <= canvasWidth + 1; i += canvasWidth / numColumns)
+        {
+            gc.strokeLine(i, 0, i, canvasHeight);
+        }
+
+        gc.setLineWidth(4);
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    // Parsing User Input Methods
+    //------------------------------------------------------------------------------------------------------------------
+
+    /* Validates User Input and stores it in global variables */
+    // Todo - Figure out if it's possible to make this w/ more local variables
+    private double parseColumns(TextField widthField)
+    {
+        // Getting the number of columns
+        try
+        {
+            return Integer.parseInt(widthField.getText());
+        }
+
+        catch (Exception e)
+        {
+            System.out.println("There was an error getting the number of columns.");
+            return 100;
+        }
+    }
+
+    private double parseRows(TextField heightField)
+    {
+        // Getting the number of rows
+        try
+        {
+            return Integer.parseInt(heightField.getText());
+        }
+
+        catch (Exception e)
+        {
+            System.out.println("There was an error getting the number of rows.");
+            return 100;
+        }
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    // Conversion Methods
+    //------------------------------------------------------------------------------------------------------------------
 
     // Takes a x in pixels and converts it into grid units - Small utility function
     private double convertDoubleXToGridUnits(double x)
@@ -299,6 +314,10 @@ public class Main extends Application
     {
         return y * boxHeight;
     }
+
+    //------------------------------------------------------------------------------------------------------------------
+    // Main Method
+    //------------------------------------------------------------------------------------------------------------------
 
     public static void main(String[] args)
     {
