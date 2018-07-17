@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.text.DecimalFormat;
 
 /* Ideas:
     - Implement zooming in and out
@@ -217,7 +218,8 @@ public class Main extends Application
         // Todo - Format this so it's not like ten decimals (use DecimalFormat?)
         if (distance > Math.sqrt(8) * 1.05f)
         {
-            buttonNotification.setText("A line distance of " + Double.toString(distance) + " is too long! Please try to draw a new line.");
+            DecimalFormat decimalFormat = new DecimalFormat("###.##");
+            buttonNotification.setText("A line distance of " + decimalFormat.format(distance) + " is too long! Please try to draw a new line.");
         }
 
         else
