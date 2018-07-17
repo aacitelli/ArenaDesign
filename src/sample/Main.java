@@ -40,36 +40,41 @@ public class Main extends Application
     @Override
     public void start(Stage primaryStage)
     {
+        // Master-level stuff
+        primaryStage.setTitle("Arena Design");
+        BorderPane borderPane = new BorderPane();
+
+        // Canvas is always a square
         double canvasWidth = Toolkit.getDefaultToolkit().getScreenSize().height - 250;
         double canvasHeight = Toolkit.getDefaultToolkit().getScreenSize().height - 250;
 
-        // Drawing Things
+        // Used for drawing things
         Canvas canvas = new Canvas(canvasWidth, canvasHeight);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        // Input Grid
+        // Making the inputGrid
         GridPane grid = makeGridPane();
         TextField widthField = new TextField(), heightField  = new TextField();
         grid.add(widthField, 1, 0);
         grid.add(heightField, 1, 1);
 
-        primaryStage.setTitle("Arena Design"); // Title of the window
-        BorderPane borderPane = new BorderPane(); // The master container-type-thing
-
-        // When the "generate" button is pressed
+        // Generate Button Event Handler
         generateButton.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
             public void handle(ActionEvent e)
             {
+                // Reading user input
                 numRows = parseRows(heightField);
                 numColumns = parseColumns(widthField);
 
-                clearGrid(gc, canvasWidth, canvasHeight);
-                drawGrid(gc, canvasWidth, canvasHeight);
-
+                // These variables are used all over the place
                 boxWidth = canvasWidth / numColumns;
                 boxHeight = canvasHeight / numRows;
+
+                // Clears then draws the grid
+                clearGrid(gc, canvasWidth, canvasHeight);
+                drawGrid(gc, canvasWidth, canvasHeight);
             }
         });
 
@@ -84,14 +89,6 @@ public class Main extends Application
         });
 
         // Todo - Implement a real-time preview of the line (this is much harder than it seems cause I have to use GraphicsContext due to this being JavaFX
-        // This is when the mouse is moved around, pressed down
-        canvas.setOnMouseDragged(new EventHandler<MouseEvent>()
-        {
-            public void handle(MouseEvent e)
-            {
-
-            }
-        });
 
         // When the mouse is released when it is pressed on the canvas
         canvas.setOnMouseReleased(new EventHandler<MouseEvent>()
@@ -205,11 +202,10 @@ public class Main extends Application
         Point2D.Double snapPoint2 = getClosestPointDouble(x2, y2); // Point 2 of the drawn line
 
         // Distance formula sqrt(x1-x2)^2 + (y1 - y2)^2)
-        double distance = Math.sqrt(Math.pow(convertDoubleXToGridUnits(snapPoint1.getX()) - convertDoubleXToGridUnits(snapPoint2.getX()), 2) // X Component
-                                  + Math.pow(convertDoubleYToGridUnits(snapPoint1.getY()) - convertDoubleYToGridUnits(snapPoint2.getY()), 2)); // Y Component
+        double distance = getDistanceBetweenPoints(snapPoint1, snapPoint2);
 
         // Todo - Format this so it's not like ten decimals (use DecimalFormat?)
-        if (distance > Math.sqrt(8) * 1.05f)
+        if (distance > Math.sqrt(8) * 1.05)
         {
             DecimalFormat decimalFormat = new DecimalFormat("###.##");
             buttonNotification.setText("A line distance of " + decimalFormat.format(distance) + " is too long! Please try to draw a new line.");
@@ -222,6 +218,14 @@ public class Main extends Application
 
         // Resetting the original position
         firstClick = new Point2D.Double();
+    }
+
+    // Returns the distance (double) between two passed-in points
+    private double getDistanceBetweenPoints(Point2D.Double point1, Point2D.Double point2)
+    {
+        // Distance Formula = sqrt((x1 - x2)^2 + (y1 - y2)^2)
+        return Math.sqrt(Math.pow(convertDoubleXToGridUnits(point1.getX()) - convertDoubleXToGridUnits(point2.getX()), 2)   // X Component
+                       + Math.pow(convertDoubleYToGridUnits(point1.getY()) - convertDoubleYToGridUnits(point2.getY()), 2)); // Y Component
     }
 
     // Todo - Fix this (it's returning the original places and not doing any snapping for whatever reason)
