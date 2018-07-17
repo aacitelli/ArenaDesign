@@ -29,20 +29,13 @@ import java.text.DecimalFormat;
 public class Main extends Application
 {
     // Todo - Make a lot of these into methods
+    private Point2D.Double firstClick;
+    private double numRows, numColumns;
 
-    // Maximizing canvas size (it's a little bit smaller than the screen height, because that is the limiting factor
-    private double sideLength = Toolkit.getDefaultToolkit().getScreenSize().height - 250;
-    private double canvasWidth = sideLength, canvasHeight = sideLength;
-
-    private int numRows = 0, numColumns = 0;
-
-    private TextField widthField = new TextField(), heightField = new TextField(); // These values are used in several methods
     private Button generateButton = new Button ("Generate Arena w/ Specified Parameters"); // Todo - Make this a local variable (pass it into functions and stuff)
 
-    private double originalXPos = 0, originalYPos = 0;
 
     // Holds the grid matrix of lines itself
-    private Canvas canvas = new Canvas(canvasWidth, canvasHeight);
     private Text buttonNotification = new Text();
 
     private double boxWidth = 0, boxHeight = 0; // These are used a TON throughout the program, they are just variables for clarity
@@ -50,17 +43,21 @@ public class Main extends Application
     @Override
     public void start(Stage primaryStage)
     {
-        // Linked to the canvas, used to draw stuff
+        double canvasWidth = Toolkit.getDefaultToolkit().getScreenSize().height - 250;
+        double canvasHeight = Toolkit.getDefaultToolkit().getScreenSize().height - 250;
+
+        // Drawing Things
+        Canvas canvas = new Canvas(canvasWidth, canvasHeight);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
+        // Input Grid
+        GridPane grid = makeGridPane();
+        TextField widthField = new TextField(), heightField  = new TextField();
+        grid.add(widthField, 1, 0);
+        grid.add(heightField, 1, 1);
 
         primaryStage.setTitle("Arena Design"); // Title of the window
         BorderPane borderPane = new BorderPane(); // The master container-type-thing
-
-        // Making the input system (a GridPane)
-        GridPane grid = makeGridPane(); // Makes a GridPane then stores it in the grid object (it's needed to draw all the shapes)
-
-
 
         // When the "generate" button is pressed
         generateButton.setOnAction(new EventHandler<ActionEvent>()
@@ -68,9 +65,11 @@ public class Main extends Application
             @Override
             public void handle(ActionEvent e)
             {
-                clearGrid(gc);
-                parseUserInput(widthField, heightField);
-                drawGrid(gc);
+                clearGrid(gc, canvasWidth, canvasHeight);
+                drawGrid(gc, canvasWidth, canvasHeight);
+
+                numRows = parseRows(heightField);
+                numColumns = parseColumns(widthField);
 
                 boxWidth = canvasWidth / numColumns;
                 boxHeight = canvasHeight / numRows;
@@ -83,9 +82,7 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent e)
             {
-                // These need stored to draw the line at the end
-                originalXPos = e.getX();
-                originalYPos = e.getY();
+                firstClick = new Point2D.Double(e.getX(), e.getY());
             }
         });
 
@@ -104,7 +101,7 @@ public class Main extends Application
         {
             public void handle(MouseEvent e)
             {
-                drawPermanentLine(originalXPos, originalYPos, e.getX(), e.getY(), gc);
+                drawPermanentLine(firstClick.getX(), firstClick.getY(), e.getX(), e.getY(), gc);
             }
         });
 
@@ -133,12 +130,6 @@ public class Main extends Application
         Text heightPrompt = new Text("Arena Height: ");
         grid.add(heightPrompt, 0, 1, 1, 1);
 
-        // The input field for the width
-        grid.add(widthField, 1, 0, 1, 1);
-
-        // The input field for the height
-        grid.add(heightField, 1, 1, 1, 1);
-
         // This pops up to notify the user that it is generating the grid
         buttonNotification = new Text();
         grid.add(buttonNotification, 1, 4);
@@ -156,7 +147,7 @@ public class Main extends Application
         This meant decimals were getting dropped occasionally, and after
         doing this several times, it became off by a very large amount.
      */
-    private void drawGrid(GraphicsContext gc)
+    private void drawGrid(GraphicsContext gc, double canvasWidth, double canvasHeight)
     {
         gc.setLineWidth(1);
 
@@ -178,28 +169,33 @@ public class Main extends Application
 
     /* Validates User Input and stores it in global variables */
     // Todo - Figure out if it's possible to make this w/ more local variables
-    private void parseUserInput(TextField widthField, TextField heightField)
+    private double parseColumns(TextField widthField)
     {
-        // Getting the number of rows
-        try
-        {
-            numRows = Integer.parseInt(widthField.getText());
-        }
-
-        catch (Exception e)
-        {
-            System.out.println("There was an error getting the number of rows.");
-        }
-
         // Getting the number of columns
         try
         {
-            numColumns = Integer.parseInt(heightField.getText());
+            return Integer.parseInt(widthField.getText());
         }
 
         catch (Exception e)
         {
             System.out.println("There was an error getting the number of columns.");
+            return 100;
+        }
+    }
+
+    private double parseRows(TextField heightField)
+    {
+        // Getting the number of rows
+        try
+        {
+            return Integer.parseInt(heightField.getText());
+        }
+
+        catch (Exception e)
+        {
+            System.out.println("There was an error getting the number of rows.");
+            return 100;
         }
     }
 
@@ -226,10 +222,13 @@ public class Main extends Application
         {
             gc.strokeLine(snapPoint1.getX(), snapPoint1.getY(), snapPoint2.getX(), snapPoint2.getY());
         }
+
+        // Resetting the original position
+        firstClick = new Point2D.Double();
     }
 
     // Todo - Fix this (it's returning the original places and not doing any snapping for whatever reason)
-    // This is a REALLY fun method (meaning it's complicated as all hell, but surprisingly coherent for me
+    // This is a REALLY fun method (meaning it's complicated as all hell, but surprisingly coherent
     private Point2D.Double getClosestPointDouble(double xPos, double yPos)
     {
         // Need converted into grid units so it's easier to compare to see what side it's on. Rounds up starting at .5
@@ -271,7 +270,7 @@ public class Main extends Application
     // Kinda hacky, but it works by putting a white rectangle over the entire canvas.
     // Todo - More garbage collection (None of the shapes get deleted AFAIK, just get a white box drawn over them
     // Idea on how to fix - Set the canvas equal to a new grid and redraw the grid with whatever's in the input boxes
-    private void clearGrid(GraphicsContext gc)
+    private void clearGrid(GraphicsContext gc, double canvasWidth, double canvasHeight)
     {
         gc.clearRect(0, 0, canvasWidth, canvasHeight);
     }
