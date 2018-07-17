@@ -10,6 +10,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -88,18 +89,36 @@ public class Main extends Application
             @Override
             public void handle(MouseEvent e)
             {
-                firstClick.setLocation(e.getX(), e.getY());
+                // Checks that it's a left click
+                if (e.getButton().equals(MouseButton.PRIMARY))
+                {
+                    firstClick.setLocation(e.getX(), e.getY());
+                }
+
             }
         });
 
+        /*
         // Todo - Implement a real-time preview of the line (this is much harder than it seems cause I have to use GraphicsContext due to this being JavaFX
+        canvas.setOnMouseDragged(new EventHandler<MouseEvent>()
+        {
+            void handle(MouseEvent e)
+            {
+                //if (e.)
+            }
+        });
+        */
 
         // When the mouse is released when it is pressed on the canvas
         canvas.setOnMouseReleased(new EventHandler<MouseEvent>()
         {
             public void handle(MouseEvent e)
             {
-                drawPermanentLine(firstClick.getX(), firstClick.getY(), e.getX(), e.getY(), gc);
+                // Checks that it's a left click
+                if (e.getButton().equals(MouseButton.PRIMARY))
+                {
+                    drawPermanentLine(firstClick.getX(), firstClick.getY(), e.getX(), e.getY(), gc);
+                }
             }
         });
 
