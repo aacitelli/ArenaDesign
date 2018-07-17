@@ -37,6 +37,10 @@ public class Main extends Application
 
     private double boxWidth = 0, boxHeight = 0; // These are used a TON throughout the program, they are just variables for clarity
 
+    /**
+     *
+     * @param primaryStage = The stage that JavaFX displays to the user
+     */
     @Override
     public void start(Stage primaryStage)
     {
@@ -107,6 +111,10 @@ public class Main extends Application
         primaryStage.show(); //  Presents everything that's loaded to the user
     }
 
+    /**
+     *
+     * @return = A GridPane with most input elements needed for the program
+     */
     private GridPane makeGridPane()
     {
         /* Creating the GridPane and all its elements */
@@ -136,16 +144,50 @@ public class Main extends Application
         return grid;
     }
 
-    // Returns the distance (double) between two passed-in points
-    private double getDistanceBetweenPoints(Point2D.Double point1, Point2D.Double point2)
+    //------------------------------------------------------------------------------------------------------------------
+    // Drawing Lines
+    //------------------------------------------------------------------------------------------------------------------
+
+    /**
+     *
+     * @param x1 = X-Coordinate of Line 1
+     * @param y1 = Y-Coordinate of Line 1
+     * @param x2 = X-Coordinate of Line 2
+     * @param y2 = Y-Coordinate of Line 2
+     * @param gc = The GraphicsContext linked to the main canvas
+     */
+    private void drawPermanentLine(double x1, double y1, double x2, double y2, GraphicsContext gc)
     {
-        // Distance Formula = sqrt((x1 - x2)^2 + (y1 - y2)^2)
-        return Math.sqrt(Math.pow(convertDoubleXToGridUnits(point1.getX()) - convertDoubleXToGridUnits(point2.getX()), 2)   // X Component
-                       + Math.pow(convertDoubleYToGridUnits(point1.getY()) - convertDoubleYToGridUnits(point2.getY()), 2)); // Y Component
+        buttonNotification.setText(""); // Resetting this so the error message for the line being too long doesn't stay up for too long
+
+        Point2D.Double snapPoint1 = getClosestPointDouble(x1, y1); // Point 1 of the drawn line
+        Point2D.Double snapPoint2 = getClosestPointDouble(x2, y2); // Point 2 of the drawn line
+
+        // Distance formula sqrt(x1-x2)^2 + (y1 - y2)^2)
+        double distance = getDistanceBetweenPoints(snapPoint1, snapPoint2);
+
+        // Todo - Format this so it's not like ten decimals (use DecimalFormat?)
+        if (distance > Math.sqrt(8) * 1.05)
+        {
+            DecimalFormat decimalFormat = new DecimalFormat("###.##");
+            buttonNotification.setText("A line distance of " + decimalFormat.format(distance) + " is too long! Please try to draw a new line.");
+        }
+
+        else
+        {
+            gc.strokeLine(snapPoint1.getX(), snapPoint1.getY(), snapPoint2.getX(), snapPoint2.getY());
+        }
+
+        // Resetting the original position
+        firstClick = new Point2D.Double();
     }
 
-    // Todo - Fix this (it's returning the original places and not doing any snapping for whatever reason)
-    // This is a REALLY fun method (meaning it's complicated as all hell, but surprisingly coherent
+    /**
+     *
+     * @param xPos = The x position of the point (in pixels)
+     * @param yPos = The y position of the point (in pixels)
+     * @return
+     */
     private Point2D.Double getClosestPointDouble(double xPos, double yPos)
     {
         // Need converted into grid units so it's easier to compare to see what side it's on. Rounds up starting at .5
@@ -184,52 +226,39 @@ public class Main extends Application
         }
     }
 
-    //------------------------------------------------------------------------------------------------------------------
-    // Drawing Methods
-    //------------------------------------------------------------------------------------------------------------------
-
-    // Draws a line on the canvas with the passed-in coordinates. Works as expected.
-    private void drawPermanentLine(double x1, double y1, double x2, double y2, GraphicsContext gc)
+    /**
+     *
+     * @param point1 = One endpoint of the line
+     * @param point2 = The other endpoint of the line
+     * @return = The distance (in grid units) between the two lines
+     */
+    private double getDistanceBetweenPoints(Point2D.Double point1, Point2D.Double point2)
     {
-        buttonNotification.setText(""); // Resetting this so the error message for the line being too long doesn't stay up for too long
-
-        Point2D.Double snapPoint1 = getClosestPointDouble(x1, y1); // Point 1 of the drawn line
-        Point2D.Double snapPoint2 = getClosestPointDouble(x2, y2); // Point 2 of the drawn line
-
-        // Distance formula sqrt(x1-x2)^2 + (y1 - y2)^2)
-        double distance = getDistanceBetweenPoints(snapPoint1, snapPoint2);
-
-        // Todo - Format this so it's not like ten decimals (use DecimalFormat?)
-        if (distance > Math.sqrt(8) * 1.05)
-        {
-            DecimalFormat decimalFormat = new DecimalFormat("###.##");
-            buttonNotification.setText("A line distance of " + decimalFormat.format(distance) + " is too long! Please try to draw a new line.");
-        }
-
-        else
-        {
-            gc.strokeLine(snapPoint1.getX(), snapPoint1.getY(), snapPoint2.getX(), snapPoint2.getY());
-        }
-
-        // Resetting the original position
-        firstClick = new Point2D.Double();
+        // Distance Formula = sqrt((x1 - x2)^2 + (y1 - y2)^2)
+        return Math.sqrt(Math.pow(convertDoubleXToGridUnits(point1.getX()) - convertDoubleXToGridUnits(point2.getX()), 2)   // X Component
+                + Math.pow(convertDoubleYToGridUnits(point1.getY()) - convertDoubleYToGridUnits(point2.getY()), 2)); // Y Component
     }
 
     //------------------------------------------------------------------------------------------------------------------
     // Grid Methods
     //------------------------------------------------------------------------------------------------------------------
 
-    // Clears the grid by essentially drawing a big white rectangle over it, to the best of my knowledge
-    // No idea if this actually does garbage collection, but if it doesn't we have a very, very slow memory leak
+    /**
+     *
+     * @param gc = The GraphicsContext linked to the main canvas
+     * @param canvasWidth = The width of the canvas
+     * @param canvasHeight = The height of the canvas
+     */
     private void clearGrid(GraphicsContext gc, double canvasWidth, double canvasHeight)
     {
         gc.clearRect(0, 0, canvasWidth, canvasHeight);
     }
 
-    /* Ok, this is fixed!
-        My issue was that some of the stuff getting divided was integers.
-        This meant decimals were getting dropped occasionally, and after
-        doing this several times, it became off by a very large amount.
+    /**
+     *
+     * @param gc = The GraphicsContext linked to the main canvas
+     * @param canvasWidth = The width of the canvas
+     * @param canvasHeight = The height of the canvas
      */
     private void drawGrid(GraphicsContext gc, double canvasWidth, double canvasHeight)
     {
@@ -255,8 +284,11 @@ public class Main extends Application
     // Parsing User Input Methods
     //------------------------------------------------------------------------------------------------------------------
 
-    /* Validates User Input and stores it in global variables */
-    // Todo - Figure out if it's possible to make this w/ more local variables
+    /**
+     *
+     * @param widthField = The TextField that the columns are being read from
+     * @return = The double-parsed number of columns
+     */
     private double parseColumns(TextField widthField)
     {
         // Getting the number of columns
@@ -272,6 +304,11 @@ public class Main extends Application
         }
     }
 
+    /**
+     *
+     * @param heightField = The TextField that the rows are being read from
+     * @return = The double-parsed number of rows
+     */
     private double parseRows(TextField heightField)
     {
         // Getting the number of rows
