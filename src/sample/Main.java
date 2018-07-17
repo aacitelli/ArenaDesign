@@ -212,8 +212,8 @@ public class Main extends Application
         Point2D.Double snapPoint2 = getClosestPointDouble(x2, y2); // Point 2 of the drawn line
 
         // Distance formula sqrt(x1-x2)^2 + (y1 - y2)^2)
-        double distance = Math.sqrt(Math.pow((snapPoint1.getX() / boxWidth) - (snapPoint2.getX() / boxWidth), 2) // X Component
-                                  + Math.pow((snapPoint1.getY() / boxHeight) - (snapPoint2.getY() / boxHeight), 2)); // Y Component
+        double distance = Math.sqrt(Math.pow(convertDoubleXToGridUnits(snapPoint1.getX()) - convertDoubleXToGridUnits(snapPoint2.getX()), 2) // X Component
+                                  + Math.pow(convertDoubleYToGridUnits(snapPoint1.getY()) - convertDoubleYToGridUnits(snapPoint2.getY()), 2)); // Y Component
 
         // Todo - Format this so it's not like ten decimals (use DecimalFormat?)
         if (distance > Math.sqrt(8) * 1.05f)
