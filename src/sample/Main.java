@@ -32,11 +32,8 @@ public class Main extends Application
     private Point2D.Double firstClick;
     private double numRows, numColumns;
 
-    private Button generateButton = new Button ("Generate Arena w/ Specified Parameters"); // Todo - Make this a local variable (pass it into functions and stuff)
-
-
-    // Holds the grid matrix of lines itself
-    private Text buttonNotification = new Text();
+    private Button generateButton = new Button ("Generate Arena w/ Specified Parameters"); // Todo - Make this nonglobal
+    private Text buttonNotification = new Text(); // This is essentially an error report so this is probably staying global
 
     private double boxWidth = 0, boxHeight = 0; // These are used a TON throughout the program, they are just variables for clarity
 
