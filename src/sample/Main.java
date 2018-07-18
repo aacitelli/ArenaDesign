@@ -98,16 +98,19 @@ public class Main extends Application
             }
         });
 
-        /*
+
         // Todo - Implement a real-time preview of the line (this is much harder than it seems cause I have to use GraphicsContext due to this being JavaFX
         canvas.setOnMouseDragged(new EventHandler<MouseEvent>()
         {
-            void handle(MouseEvent e)
+            public void handle(MouseEvent e)
             {
-                //if (e.)
+                // Checks that it's a right click
+                if (e.getButton().equals(MouseButton.SECONDARY))
+                {
+                    
+                }
             }
         });
-        */
 
         // When the mouse is released when it is pressed on the canvas
         canvas.setOnMouseReleased(new EventHandler<MouseEvent>()
