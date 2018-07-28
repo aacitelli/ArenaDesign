@@ -37,6 +37,7 @@ public class Main extends Application
     private Text buttonNotification = new Text(); // This is essentially an error report so this is probably staying global
 
     private double boxWidth = 0, boxHeight = 0; // These are used a TON throughout the program, they are just variables for clarity
+    double distance;
 
     /**
      *
@@ -107,7 +108,7 @@ public class Main extends Application
                 // Checks that it's a right click
                 if (e.getButton().equals(MouseButton.SECONDARY))
                 {
-                    
+
                 }
             }
         });
@@ -121,6 +122,8 @@ public class Main extends Application
                 if (e.getButton().equals(MouseButton.PRIMARY))
                 {
                     drawPermanentLine(firstClick.getX(), firstClick.getY(), e.getX(), e.getY(), gc);
+
+                    // Todo - Mirror that line across the diagonal line
                 }
             }
         });
@@ -186,9 +189,8 @@ public class Main extends Application
         Point2D.Double snapPoint2 = getClosestPointDouble(x2, y2); // Point 2 of the drawn line
 
         // Distance formula sqrt(x1-x2)^2 + (y1 - y2)^2)
-        double distance = getDistanceBetweenPoints(snapPoint1, snapPoint2);
+        distance = getDistanceBetweenPoints(snapPoint1, snapPoint2);
 
-        // Todo - Format this so it's not like ten decimals (use DecimalFormat?)
         if (distance > Math.sqrt(8) * 1.05)
         {
             DecimalFormat decimalFormat = new DecimalFormat("###.##");
@@ -258,7 +260,7 @@ public class Main extends Application
     {
         // Distance Formula = sqrt((x1 - x2)^2 + (y1 - y2)^2)
         return Math.sqrt(Math.pow(convertDoubleXToGridUnits(point1.getX()) - convertDoubleXToGridUnits(point2.getX()), 2)   // X Component
-                + Math.pow(convertDoubleYToGridUnits(point1.getY()) - convertDoubleYToGridUnits(point2.getY()), 2)); // Y Component
+                       + Math.pow(convertDoubleYToGridUnits(point1.getY()) - convertDoubleYToGridUnits(point2.getY()), 2)); // Y Component
     }
 
     //------------------------------------------------------------------------------------------------------------------
@@ -316,7 +318,8 @@ public class Main extends Application
         // Getting the number of columns
         try
         {
-            return Integer.parseInt(widthField.getText());
+            double numColumns = Integer.parseInt(widthField.getText()); // Here in case java tries to return an error
+            return numColumns;
         }
 
         catch (Exception e)
@@ -336,7 +339,8 @@ public class Main extends Application
         // Getting the number of rows
         try
         {
-            return Integer.parseInt(heightField.getText());
+            double numRows = Integer.parseInt(heightField.getText()); // Here in case java tries to return an error
+            return numRows;
         }
 
         catch (Exception e)

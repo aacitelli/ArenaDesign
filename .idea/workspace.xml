@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,47 +55,49 @@
     <ui_properties converted="true" />
     <breakpoint_rules converted="true" />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-95280680">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="519" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="519" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="108" column="17" selection-start-line="108" selection-start-column="17" selection-end-line="108" selection-end-column="17" />
+            <state relative-caret-position="286">
+              <caret line="111" column="17" lean-forward="true" selection-start-line="111" selection-start-column="17" selection-end-line="111" selection-end-column="17" />
               <folding>
                 <element signature="docComment;method#start#0;class#Main#0" />
-                <element signature="class#2292:2909" />
-                <element signature="method#handle#0;class#2292:2909" />
                 <element signature="docComment;method#makeGridPane#0;class#Main#0" />
                 <element signature="method#makeGridPane#0;class#Main#0" />
                 <element signature="docComment;method#drawPermanentLine#0;class#Main#0" />
-                <element signature="method#drawPermanentLine#0;class#Main#0" />
                 <element signature="docComment;method#getClosestPointDouble#0;class#Main#0" />
-                <element signature="method#getClosestPointDouble#0;class#Main#0" />
                 <element signature="docComment;method#getDistanceBetweenPoints#0;class#Main#0" />
-                <element signature="method#getDistanceBetweenPoints#0;class#Main#0" />
-                <element signature="e#9055#9171#0" />
                 <element signature="docComment;method#clearGrid#0;class#Main#0" />
                 <element signature="method#clearGrid#0;class#Main#0" />
                 <element signature="docComment;method#drawGrid#0;class#Main#0" />
                 <element signature="method#drawGrid#0;class#Main#0" />
                 <element signature="docComment;method#parseColumns#0;class#Main#0" />
-                <element signature="method#parseColumns#0;class#Main#0" />
                 <element signature="docComment;method#parseRows#0;class#Main#0" />
-                <element signature="method#parseRows#0;class#Main#0" />
-                <element signature="e#13130#13131#0" expanded="true" />
-                <element signature="e#13165#13166#0" expanded="true" />
-                <element signature="e#13310#13311#0" expanded="true" />
-                <element signature="e#13346#13347#0" expanded="true" />
-                <element signature="e#13492#13493#0" expanded="true" />
-                <element signature="e#13527#13528#0" expanded="true" />
-                <element signature="e#13673#13674#0" expanded="true" />
-                <element signature="e#13709#13710#0" expanded="true" />
-                <element signature="e#14021#14022#0" expanded="true" />
-                <element signature="e#14049#14050#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -107,6 +109,7 @@
     <findStrings>
       <find>originalXPos</find>
       <find>boxWidth</find>
+      <find>distance</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -167,8 +170,23 @@
     </option>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="sample.Main" />
@@ -182,65 +200,44 @@
       </extension>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="moduleWithDependencies" />
       </option>
-      <patterns />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="moduleWithDependencies" />
       </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
       <properties />
       <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
       <option name="PROGRAM_PARAMETERS" />
       <predefined_log_file id="idea.log" enabled="true" />
-    </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
-    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
-      <Host>localhost</Host>
-      <Port>5050</Port>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
   </component>
   <component name="SvnConfiguration">
@@ -273,34 +270,34 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32928178" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.3314917" />
-      <window_info anchor="right" id="Palette&#9;" order="4" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32928178" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info id="Designer" order="2" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" weight="0.42857143" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Profiler" order="7" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Application Servers" order="7" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Problems" order="7" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="JetGradle" order="3" />
-      <window_info anchor="right" id="Database" order="3" />
+      <window_info id="Designer" order="2" />
+      <window_info id="UI Designer" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Changes" order="7" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32893288" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32928178" />
+      <window_info anchor="bottom" id="Changes" order="7" />
+      <window_info anchor="bottom" id="Problems" order="8" />
+      <window_info anchor="bottom" id="Profiler" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="bottom" id="Application Servers" order="12" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.33113313" />
+      <window_info anchor="bottom" id="Terminal" order="14" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="JetGradle" order="4" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -310,518 +307,18 @@
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="3" />
-    </breakpoint-manager>
-  </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
-          <folding>
-            <element signature="docComment;method#start#0;class#Main#0" />
-            <element signature="class#2292:2909" />
-            <element signature="method#handle#0;class#2292:2909" />
-            <element signature="docComment;method#makeGridPane#0;class#Main#0" />
-            <element signature="method#makeGridPane#0;class#Main#0" />
-            <element signature="docComment;method#drawPermanentLine#0;class#Main#0" />
-            <element signature="method#drawPermanentLine#0;class#Main#0" />
-            <element signature="docComment;method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="docComment;method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="e#9055#9171#0" />
-            <element signature="docComment;method#clearGrid#0;class#Main#0" />
-            <element signature="method#clearGrid#0;class#Main#0" />
-            <element signature="docComment;method#drawGrid#0;class#Main#0" />
-            <element signature="method#drawGrid#0;class#Main#0" />
-            <element signature="docComment;method#parseColumns#0;class#Main#0" />
-            <element signature="method#parseColumns#0;class#Main#0" />
-            <element signature="docComment;method#parseRows#0;class#Main#0" />
-            <element signature="method#parseRows#0;class#Main#0" />
-            <element signature="e#13130#13131#0" expanded="true" />
-            <element signature="e#13165#13166#0" expanded="true" />
-            <element signature="e#13310#13311#0" expanded="true" />
-            <element signature="e#13346#13347#0" expanded="true" />
-            <element signature="e#13492#13493#0" expanded="true" />
-            <element signature="e#13527#13528#0" expanded="true" />
-            <element signature="e#13673#13674#0" expanded="true" />
-            <element signature="e#13709#13710#0" expanded="true" />
-            <element signature="e#14021#14022#0" expanded="true" />
-            <element signature="e#14049#14050#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3485">
-          <caret line="205" column="76" lean-forward="true" selection-start-line="205" selection-start-column="76" selection-end-line="205" selection-end-column="76" />
-          <folding>
-            <element signature="docComment;method#start#0;class#Main#0" />
-            <element signature="class#2292:2909" />
-            <element signature="method#handle#0;class#2292:2909" />
-            <element signature="docComment;method#makeGridPane#0;class#Main#0" />
-            <element signature="method#makeGridPane#0;class#Main#0" />
-            <element signature="docComment;method#drawPermanentLine#0;class#Main#0" />
-            <element signature="method#drawPermanentLine#0;class#Main#0" />
-            <element signature="docComment;method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="docComment;method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="e#9055#9171#0" />
-            <element signature="docComment;method#clearGrid#0;class#Main#0" />
-            <element signature="method#clearGrid#0;class#Main#0" />
-            <element signature="docComment;method#drawGrid#0;class#Main#0" />
-            <element signature="method#drawGrid#0;class#Main#0" />
-            <element signature="docComment;method#parseColumns#0;class#Main#0" />
-            <element signature="method#parseColumns#0;class#Main#0" />
-            <element signature="docComment;method#parseRows#0;class#Main#0" />
-            <element signature="method#parseRows#0;class#Main#0" />
-            <element signature="e#13130#13131#0" expanded="true" />
-            <element signature="e#13165#13166#0" expanded="true" />
-            <element signature="e#13310#13311#0" expanded="true" />
-            <element signature="e#13346#13347#0" expanded="true" />
-            <element signature="e#13492#13493#0" expanded="true" />
-            <element signature="e#13527#13528#0" expanded="true" />
-            <element signature="e#13673#13674#0" expanded="true" />
-            <element signature="e#13709#13710#0" expanded="true" />
-            <element signature="e#14021#14022#0" expanded="true" />
-            <element signature="e#14049#14050#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4403">
-          <caret line="259" column="61" selection-start-line="259" selection-start-column="61" selection-end-line="259" selection-end-column="61" />
-          <folding>
-            <element signature="docComment;method#start#0;class#Main#0" />
-            <element signature="class#2292:2909" />
-            <element signature="method#handle#0;class#2292:2909" />
-            <element signature="docComment;method#makeGridPane#0;class#Main#0" />
-            <element signature="method#makeGridPane#0;class#Main#0" />
-            <element signature="docComment;method#drawPermanentLine#0;class#Main#0" />
-            <element signature="method#drawPermanentLine#0;class#Main#0" />
-            <element signature="docComment;method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="docComment;method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="e#9055#9171#0" />
-            <element signature="docComment;method#clearGrid#0;class#Main#0" />
-            <element signature="method#clearGrid#0;class#Main#0" />
-            <element signature="docComment;method#drawGrid#0;class#Main#0" />
-            <element signature="method#drawGrid#0;class#Main#0" />
-            <element signature="docComment;method#parseColumns#0;class#Main#0" />
-            <element signature="method#parseColumns#0;class#Main#0" />
-            <element signature="docComment;method#parseRows#0;class#Main#0" />
-            <element signature="method#parseRows#0;class#Main#0" />
-            <element signature="e#13130#13131#0" expanded="true" />
-            <element signature="e#13165#13166#0" expanded="true" />
-            <element signature="e#13310#13311#0" expanded="true" />
-            <element signature="e#13346#13347#0" expanded="true" />
-            <element signature="e#13492#13493#0" expanded="true" />
-            <element signature="e#13527#13528#0" expanded="true" />
-            <element signature="e#13673#13674#0" expanded="true" />
-            <element signature="e#13709#13710#0" expanded="true" />
-            <element signature="e#14021#14022#0" expanded="true" />
-            <element signature="e#14049#14050#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3604">
-          <caret line="212" lean-forward="true" selection-start-line="212" selection-end-line="212" />
-          <folding>
-            <element signature="docComment;method#start#0;class#Main#0" />
-            <element signature="class#2292:2909" />
-            <element signature="method#handle#0;class#2292:2909" />
-            <element signature="docComment;method#makeGridPane#0;class#Main#0" />
-            <element signature="method#makeGridPane#0;class#Main#0" />
-            <element signature="docComment;method#drawPermanentLine#0;class#Main#0" />
-            <element signature="method#drawPermanentLine#0;class#Main#0" />
-            <element signature="docComment;method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="docComment;method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="e#9055#9171#0" />
-            <element signature="docComment;method#clearGrid#0;class#Main#0" />
-            <element signature="method#clearGrid#0;class#Main#0" />
-            <element signature="docComment;method#drawGrid#0;class#Main#0" />
-            <element signature="method#drawGrid#0;class#Main#0" />
-            <element signature="docComment;method#parseColumns#0;class#Main#0" />
-            <element signature="method#parseColumns#0;class#Main#0" />
-            <element signature="docComment;method#parseRows#0;class#Main#0" />
-            <element signature="method#parseRows#0;class#Main#0" />
-            <element signature="e#13130#13131#0" expanded="true" />
-            <element signature="e#13165#13166#0" expanded="true" />
-            <element signature="e#13310#13311#0" expanded="true" />
-            <element signature="e#13346#13347#0" expanded="true" />
-            <element signature="e#13492#13493#0" expanded="true" />
-            <element signature="e#13527#13528#0" expanded="true" />
-            <element signature="e#13673#13674#0" expanded="true" />
-            <element signature="e#13709#13710#0" expanded="true" />
-            <element signature="e#14021#14022#0" expanded="true" />
-            <element signature="e#14049#14050#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="59" column="29" lean-forward="true" selection-start-line="59" selection-start-column="29" selection-end-line="59" selection-end-column="29" />
-          <folding>
-            <element signature="docComment;method#start#0;class#Main#0" />
-            <element signature="class#2292:2909" />
-            <element signature="method#handle#0;class#2292:2909" />
-            <element signature="docComment;method#makeGridPane#0;class#Main#0" />
-            <element signature="method#makeGridPane#0;class#Main#0" />
-            <element signature="docComment;method#drawPermanentLine#0;class#Main#0" />
-            <element signature="method#drawPermanentLine#0;class#Main#0" />
-            <element signature="docComment;method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="docComment;method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="e#9055#9171#0" />
-            <element signature="docComment;method#clearGrid#0;class#Main#0" />
-            <element signature="method#clearGrid#0;class#Main#0" />
-            <element signature="docComment;method#drawGrid#0;class#Main#0" />
-            <element signature="method#drawGrid#0;class#Main#0" />
-            <element signature="docComment;method#parseColumns#0;class#Main#0" />
-            <element signature="method#parseColumns#0;class#Main#0" />
-            <element signature="docComment;method#parseRows#0;class#Main#0" />
-            <element signature="method#parseRows#0;class#Main#0" />
-            <element signature="e#13130#13131#0" expanded="true" />
-            <element signature="e#13165#13166#0" expanded="true" />
-            <element signature="e#13310#13311#0" expanded="true" />
-            <element signature="e#13346#13347#0" expanded="true" />
-            <element signature="e#13492#13493#0" expanded="true" />
-            <element signature="e#13527#13528#0" expanded="true" />
-            <element signature="e#13673#13674#0" expanded="true" />
-            <element signature="e#13709#13710#0" expanded="true" />
-            <element signature="e#14021#14022#0" expanded="true" />
-            <element signature="e#14049#14050#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ArenaDesign.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="42" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="42" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1632">
-          <caret line="96" column="13" lean-forward="true" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
-          <folding>
-            <element signature="docComment;method#start#0;class#Main#0" />
-            <element signature="class#2292:2909" />
-            <element signature="method#handle#0;class#2292:2909" />
-            <element signature="docComment;method#makeGridPane#0;class#Main#0" />
-            <element signature="method#makeGridPane#0;class#Main#0" />
-            <element signature="docComment;method#drawPermanentLine#0;class#Main#0" />
-            <element signature="method#drawPermanentLine#0;class#Main#0" />
-            <element signature="docComment;method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="docComment;method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="e#9055#9171#0" />
-            <element signature="docComment;method#clearGrid#0;class#Main#0" />
-            <element signature="method#clearGrid#0;class#Main#0" />
-            <element signature="docComment;method#drawGrid#0;class#Main#0" />
-            <element signature="method#drawGrid#0;class#Main#0" />
-            <element signature="docComment;method#parseColumns#0;class#Main#0" />
-            <element signature="method#parseColumns#0;class#Main#0" />
-            <element signature="docComment;method#parseRows#0;class#Main#0" />
-            <element signature="method#parseRows#0;class#Main#0" />
-            <element signature="e#13130#13131#0" expanded="true" />
-            <element signature="e#13165#13166#0" expanded="true" />
-            <element signature="e#13310#13311#0" expanded="true" />
-            <element signature="e#13346#13347#0" expanded="true" />
-            <element signature="e#13492#13493#0" expanded="true" />
-            <element signature="e#13527#13528#0" expanded="true" />
-            <element signature="e#13673#13674#0" expanded="true" />
-            <element signature="e#13709#13710#0" expanded="true" />
-            <element signature="e#14021#14022#0" expanded="true" />
-            <element signature="e#14049#14050#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ArenaDesign.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="42" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1598">
-          <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
-          <folding>
-            <element signature="docComment;method#start#0;class#Main#0" />
-            <element signature="class#2292:2909" />
-            <element signature="method#handle#0;class#2292:2909" />
-            <element signature="docComment;method#makeGridPane#0;class#Main#0" />
-            <element signature="method#makeGridPane#0;class#Main#0" />
-            <element signature="docComment;method#drawPermanentLine#0;class#Main#0" />
-            <element signature="method#drawPermanentLine#0;class#Main#0" />
-            <element signature="docComment;method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="docComment;method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="e#9055#9171#0" />
-            <element signature="docComment;method#clearGrid#0;class#Main#0" />
-            <element signature="method#clearGrid#0;class#Main#0" />
-            <element signature="docComment;method#drawGrid#0;class#Main#0" />
-            <element signature="method#drawGrid#0;class#Main#0" />
-            <element signature="docComment;method#parseColumns#0;class#Main#0" />
-            <element signature="method#parseColumns#0;class#Main#0" />
-            <element signature="docComment;method#parseRows#0;class#Main#0" />
-            <element signature="method#parseRows#0;class#Main#0" />
-            <element signature="e#13130#13131#0" expanded="true" />
-            <element signature="e#13165#13166#0" expanded="true" />
-            <element signature="e#13310#13311#0" expanded="true" />
-            <element signature="e#13346#13347#0" expanded="true" />
-            <element signature="e#13492#13493#0" expanded="true" />
-            <element signature="e#13527#13528#0" expanded="true" />
-            <element signature="e#13673#13674#0" expanded="true" />
-            <element signature="e#13709#13710#0" expanded="true" />
-            <element signature="e#14021#14022#0" expanded="true" />
-            <element signature="e#14049#14050#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ArenaDesign.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="42" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
-          <folding>
-            <element signature="docComment;method#start#0;class#Main#0" />
-            <element signature="class#2292:2909" />
-            <element signature="method#handle#0;class#2292:2909" />
-            <element signature="docComment;method#makeGridPane#0;class#Main#0" />
-            <element signature="method#makeGridPane#0;class#Main#0" />
-            <element signature="docComment;method#drawPermanentLine#0;class#Main#0" />
-            <element signature="method#drawPermanentLine#0;class#Main#0" />
-            <element signature="docComment;method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="docComment;method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="e#9055#9171#0" />
-            <element signature="docComment;method#clearGrid#0;class#Main#0" />
-            <element signature="method#clearGrid#0;class#Main#0" />
-            <element signature="docComment;method#drawGrid#0;class#Main#0" />
-            <element signature="method#drawGrid#0;class#Main#0" />
-            <element signature="docComment;method#parseColumns#0;class#Main#0" />
-            <element signature="method#parseColumns#0;class#Main#0" />
-            <element signature="docComment;method#parseRows#0;class#Main#0" />
-            <element signature="method#parseRows#0;class#Main#0" />
-            <element signature="e#13130#13131#0" expanded="true" />
-            <element signature="e#13165#13166#0" expanded="true" />
-            <element signature="e#13310#13311#0" expanded="true" />
-            <element signature="e#13346#13347#0" expanded="true" />
-            <element signature="e#13492#13493#0" expanded="true" />
-            <element signature="e#13527#13528#0" expanded="true" />
-            <element signature="e#13673#13674#0" expanded="true" />
-            <element signature="e#13709#13710#0" expanded="true" />
-            <element signature="e#14021#14022#0" expanded="true" />
-            <element signature="e#14049#14050#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ArenaDesign.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="docComment;method#start#0;class#Main#0" />
-            <element signature="class#2292:2909" />
-            <element signature="method#handle#0;class#2292:2909" />
-            <element signature="docComment;method#makeGridPane#0;class#Main#0" />
-            <element signature="method#makeGridPane#0;class#Main#0" />
-            <element signature="docComment;method#drawPermanentLine#0;class#Main#0" />
-            <element signature="method#drawPermanentLine#0;class#Main#0" />
-            <element signature="docComment;method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="docComment;method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="e#9055#9171#0" />
-            <element signature="docComment;method#clearGrid#0;class#Main#0" />
-            <element signature="method#clearGrid#0;class#Main#0" />
-            <element signature="docComment;method#drawGrid#0;class#Main#0" />
-            <element signature="method#drawGrid#0;class#Main#0" />
-            <element signature="docComment;method#parseColumns#0;class#Main#0" />
-            <element signature="method#parseColumns#0;class#Main#0" />
-            <element signature="docComment;method#parseRows#0;class#Main#0" />
-            <element signature="method#parseRows#0;class#Main#0" />
-            <element signature="e#13130#13131#0" expanded="true" />
-            <element signature="e#13165#13166#0" expanded="true" />
-            <element signature="e#13310#13311#0" expanded="true" />
-            <element signature="e#13346#13347#0" expanded="true" />
-            <element signature="e#13492#13493#0" expanded="true" />
-            <element signature="e#13527#13528#0" expanded="true" />
-            <element signature="e#13673#13674#0" expanded="true" />
-            <element signature="e#13709#13710#0" expanded="true" />
-            <element signature="e#14021#14022#0" expanded="true" />
-            <element signature="e#14049#14050#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ArenaDesign.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="docComment;method#start#0;class#Main#0" />
-            <element signature="class#2292:2909" />
-            <element signature="method#handle#0;class#2292:2909" />
-            <element signature="docComment;method#makeGridPane#0;class#Main#0" />
-            <element signature="method#makeGridPane#0;class#Main#0" />
-            <element signature="docComment;method#drawPermanentLine#0;class#Main#0" />
-            <element signature="method#drawPermanentLine#0;class#Main#0" />
-            <element signature="docComment;method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="docComment;method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="e#9055#9171#0" />
-            <element signature="docComment;method#clearGrid#0;class#Main#0" />
-            <element signature="method#clearGrid#0;class#Main#0" />
-            <element signature="docComment;method#drawGrid#0;class#Main#0" />
-            <element signature="method#drawGrid#0;class#Main#0" />
-            <element signature="docComment;method#parseColumns#0;class#Main#0" />
-            <element signature="method#parseColumns#0;class#Main#0" />
-            <element signature="docComment;method#parseRows#0;class#Main#0" />
-            <element signature="method#parseRows#0;class#Main#0" />
-            <element signature="e#13130#13131#0" expanded="true" />
-            <element signature="e#13165#13166#0" expanded="true" />
-            <element signature="e#13310#13311#0" expanded="true" />
-            <element signature="e#13346#13347#0" expanded="true" />
-            <element signature="e#13492#13493#0" expanded="true" />
-            <element signature="e#13527#13528#0" expanded="true" />
-            <element signature="e#13673#13674#0" expanded="true" />
-            <element signature="e#13709#13710#0" expanded="true" />
-            <element signature="e#14021#14022#0" expanded="true" />
-            <element signature="e#14049#14050#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="11" lean-forward="true" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="42" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="42" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -834,10 +331,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
           <caret line="419" selection-start-line="419" selection-end-line="419" />
-          <folding>
-            <element signature="e#21385#21386#0" expanded="true" />
-            <element signature="e#21422#21423#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -852,10 +345,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="2551" selection-start-line="2551" selection-end-line="2551" />
-          <folding>
-            <element signature="e#27919#27920#0" expanded="true" />
-            <element signature="e#27963#27964#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -864,39 +353,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="108" column="17" selection-start-line="108" selection-start-column="17" selection-end-line="108" selection-end-column="17" />
+        <state relative-caret-position="286">
+          <caret line="111" column="17" lean-forward="true" selection-start-line="111" selection-start-column="17" selection-end-line="111" selection-end-column="17" />
           <folding>
             <element signature="docComment;method#start#0;class#Main#0" />
-            <element signature="class#2292:2909" />
-            <element signature="method#handle#0;class#2292:2909" />
             <element signature="docComment;method#makeGridPane#0;class#Main#0" />
             <element signature="method#makeGridPane#0;class#Main#0" />
             <element signature="docComment;method#drawPermanentLine#0;class#Main#0" />
-            <element signature="method#drawPermanentLine#0;class#Main#0" />
             <element signature="docComment;method#getClosestPointDouble#0;class#Main#0" />
-            <element signature="method#getClosestPointDouble#0;class#Main#0" />
             <element signature="docComment;method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="method#getDistanceBetweenPoints#0;class#Main#0" />
-            <element signature="e#9055#9171#0" />
             <element signature="docComment;method#clearGrid#0;class#Main#0" />
             <element signature="method#clearGrid#0;class#Main#0" />
             <element signature="docComment;method#drawGrid#0;class#Main#0" />
             <element signature="method#drawGrid#0;class#Main#0" />
             <element signature="docComment;method#parseColumns#0;class#Main#0" />
-            <element signature="method#parseColumns#0;class#Main#0" />
             <element signature="docComment;method#parseRows#0;class#Main#0" />
-            <element signature="method#parseRows#0;class#Main#0" />
-            <element signature="e#13130#13131#0" expanded="true" />
-            <element signature="e#13165#13166#0" expanded="true" />
-            <element signature="e#13310#13311#0" expanded="true" />
-            <element signature="e#13346#13347#0" expanded="true" />
-            <element signature="e#13492#13493#0" expanded="true" />
-            <element signature="e#13527#13528#0" expanded="true" />
-            <element signature="e#13673#13674#0" expanded="true" />
-            <element signature="e#13709#13710#0" expanded="true" />
-            <element signature="e#14021#14022#0" expanded="true" />
-            <element signature="e#14049#14050#0" expanded="true" />
           </folding>
         </state>
       </provider>
