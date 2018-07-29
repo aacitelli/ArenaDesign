@@ -12,12 +12,13 @@ Currently my main project, and being actively worked on every day.
 
 ##### High Priority
 
-- Fix snapping errors - It never works first time, and it starts acting funny after a distance ends up being too long. Something wrong with the distance method. 
-- Add delete functionality (Dragging over lines w/ right click enabled seems the most intuitive)
-- Add the ability to add other structures instead of just walls (Bases, Energizers, Trussle, Pillars, and that's about it)
+- Fix snapping errors - It never works first time, and it starts acting funny after a distance ends up being too long. Something probably wrong with the distance method, but I've looked through it several times and haven't found anything
+- Add delete functionality (Dragging over lines w/ right click enabled seems the most intuitive, but that's kind of complicated to program due to how GraphicsContext is implemented in my program)(Duplicate this to the other side too)
+- Add the ability to add other structures instead of just walls (Bases, Energizers, Trussle, Pillars, and that's about all I can think of)
 
 ##### Relatively Low Priority
 
+- Make every barrier replicate itself across
 - Make it possible to have different shaped arenas instead of just a square (this shouldn't be insanely difficult, but it's obviously not easy
 - Make a "preview line" pop up when the user is dragging the cursor around (this is difficult due to me using JavaFX and GraphicsContext being tricky in that regard, but I'll figure it out given time)
 

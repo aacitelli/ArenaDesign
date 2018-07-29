@@ -29,15 +29,15 @@ import java.text.DecimalFormat;
  */
 public class Main extends Application
 {
-    // Todo - Make a lot of these into methods
     private Point2D.Double firstClick = new Point2D.Double();
     private double numRows, numColumns;
 
-    private Button generateButton = new Button ("Generate Arena w/ Specified Parameters"); // Todo - Make this nonglobal
+    private Button generateButton = new Button ("Generate Arena w/ Specified Parameters");
+    private Button resetButton = new Button("Reset the Grid w/ The Same Dimensions");
+
     private Text buttonNotification = new Text(); // This is essentially an error report so this is probably staying global
 
     private double boxWidth = 0, boxHeight = 0; // These are used a TON throughout the program, they are just variables for clarity
-    double distance;
 
     /**
      *
@@ -84,6 +84,15 @@ public class Main extends Application
             }
         });
 
+        resetButton.setOnAction(new EventHandler<ActionEvent>()
+        {
+            public void handle(ActionEvent e)
+            {
+                clearGrid(gc, canvasWidth, canvasHeight);
+                drawGrid(gc, canvasWidth, canvasHeight); // Todo - Make it so this doesn't re-read the width and the height. Very small inefficiency, but could be slightly optimized
+            }
+        });
+
         // Todo - Make the "line creation" element of this work
         canvas.setOnMouseClicked(new EventHandler<MouseEvent>()
         {
@@ -123,7 +132,10 @@ public class Main extends Application
                 {
                     drawPermanentLine(firstClick.getX(), firstClick.getY(), e.getX(), e.getY(), gc);
 
-                    // Todo - Mirror that line across the diagonal line
+                    // Mirrors the line across the line y = x basically
+                    // Todo - Fix this line. Took like three seconds to program, but it really should still work tbh
+                    drawPermanentLine(canvasWidth - firstClick.getX(), canvasHeight - firstClick.getY(), canvasWidth - e.getX(), canvasHeight - e.getY(), gc);
+
                 }
             }
         });
@@ -166,6 +178,11 @@ public class Main extends Application
         hbGenerateButton.getChildren().add(generateButton);
         grid.add(hbGenerateButton, 1, 2);
 
+        HBox hbResetButton = new HBox(10);
+        hbResetButton.setAlignment(Pos.BOTTOM_CENTER);
+        hbResetButton.getChildren().add(resetButton);
+        grid.add(hbResetButton, 1, 3);
+
         return grid;
     }
 
@@ -189,7 +206,7 @@ public class Main extends Application
         Point2D.Double snapPoint2 = getClosestPointDouble(x2, y2); // Point 2 of the drawn line
 
         // Distance formula sqrt(x1-x2)^2 + (y1 - y2)^2)
-        distance = getDistanceBetweenPoints(snapPoint1, snapPoint2);
+        double distance = getDistanceBetweenPoints(snapPoint1, snapPoint2);
 
         if (distance > Math.sqrt(8) * 1.05)
         {
@@ -254,7 +271,7 @@ public class Main extends Application
      *
      * @param point1 = One endpoint of the line
      * @param point2 = The other endpoint of the line
-     * @return = The distance (in grid units) between the two lines
+     * @return = The distance (IN PIXELS) between the two lines
      */
     private double getDistanceBetweenPoints(Point2D.Double point1, Point2D.Double point2)
     {
@@ -386,4 +403,6 @@ public class Main extends Application
     {
         launch(args);
     }
+
+
 }
