@@ -6,7 +6,7 @@ ArenaDesign is a JavaFX program that I made mid-summer that displays a grid that
 
 ### Current State of the Project
 
-Currently my main project, and being actively worked on every day.
+Haven't worked on it in a while, but I'll probably pick it back up at some point. 
 
 ### What's next for the project?
 
